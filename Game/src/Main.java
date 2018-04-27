@@ -1,9 +1,15 @@
 import Engine.Frame;
 
+import java.awt.*;
+import java.util.EventListener;
+
 public class Main {
 
     public static void main(String[] args) {
-        Frame window = new Frame();
+        EventQueue.invokeLater(()-> {
+            Frame window = new Frame();
+            window.setVisible(true);
+        });
 
     }
 }

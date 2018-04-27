@@ -3,6 +3,12 @@ package Engine;
 import java.awt.*;
 import java.awt.image.VolatileImage;
 
+/**
+ * Creates a Loop on a Separate CPU Thread where
+ * Graphics should be drawn onto. Requires a Canvas
+ * object attached to a Frame.
+ * @author Jakub
+ */
 public class Renderer
 {
     private int resolution;

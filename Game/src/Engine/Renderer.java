@@ -15,26 +15,37 @@ public class Renderer
     private int targetFPS;
 
     private Dimension size;
+    private Canvas canvas;
 
     private int currentFPS;
     private long lastFPSCheck;
     private int totalFrames;
 
-    private int targetTime = (int)1E9 / targetFPS;
+    private int targetTime;
+
+    private boolean isRunning;
+
+    private IRenderEvent renderEvent;
 
     public Renderer(Canvas canvas, int resolution, int targetFPS)
     {
+        if(targetFPS <= 0 | resolution <= 0) { return; }
+
+        this.canvas = canvas;
         this.resolution = resolution;
         this.targetFPS = targetFPS;
 
-        size = getScaleResolution(canvas);
+        targetTime = (int)1E9 / targetFPS;
 
         Thread thread = new Thread(() ->
         {
+            isRunning = true;
+
+            scaleResolution();
             GraphicsConfiguration gc = canvas.getGraphicsConfiguration();
             VolatileImage vImage = gc.createCompatibleVolatileImage(size.width, size.height);
 
-            while(true)
+            while(isRunning)
             {
                 long startTime = System.nanoTime();
                 calculateFPS();
@@ -45,13 +56,15 @@ public class Renderer
 
                 Graphics g = vImage.getGraphics();
 
+                // Make the Screen Black
                 g.setColor(Color.black);
                 g.fillRect(0, 0, size.width, size.height);
 
+                // Draw the FPS Counter
                 g.setColor(Color.white);
-                g.drawString(currentFPS + "", 10, 10);
+                g.drawString(currentFPS + "", 5, 15);
 
-                // TODO - Render Stuff
+                renderEvent.Invoke(g);
 
                 g.dispose();
 
@@ -75,13 +88,12 @@ public class Renderer
         thread.start();
     }
 
-    private Dimension getScaleResolution(Canvas canvas)
+    private void scaleResolution()
     {
         double factor = (canvas.getWidth() + canvas.getHeight()) / 2;
         double width = canvas.getWidth() / (factor / resolution);
         double height = canvas.getHeight() / (factor / resolution);
-
-        return new Dimension((int)width, (int)height);
+        size = new Dimension((int)width, (int)height);
     }
 
     private void calculateFPS()
@@ -94,5 +106,13 @@ public class Renderer
             currentFPS = totalFrames;
             totalFrames = 0;
         }
+    }
+
+    public void setTargetFPS(int fps) {
+        targetFPS = fps;
+    }
+
+    public void setRenderQueue(IRenderEvent event)  {
+        renderEvent = event;
     }
 }

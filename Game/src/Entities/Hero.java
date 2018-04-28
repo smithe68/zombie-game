@@ -1,12 +1,11 @@
 package Entities;
 
-import javax.swing.*;
+import Engine.Entity;
 
-public class Hero {
-    public void Hero(){
-        ImageIcon heroPNG = new ImageIcon("");
-        JLabel heroLabel = new JLabel(heroPNG);
-
+public class Hero extends Entity
+{
+    public void start()
+    {
+        renderType = RenderType.Rectangle;
     }
-
 }

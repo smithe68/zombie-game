@@ -11,29 +11,29 @@ import java.awt.image.VolatileImage;
  */
 public class Renderer
 {
-    private int resolution;
-    private int targetFPS;
+    private static int resolution;
+    private static int targetFPS;
 
-    private Dimension size;
-    private Canvas canvas;
+    private static Dimension size;
+    private static Canvas canvas;
 
-    private int currentFPS;
-    private long lastFPSCheck;
-    private int totalFrames;
+    private static int currentFPS;
+    private static long lastFPSCheck;
+    private static int totalFrames;
 
-    private int targetTime;
+    private static int targetTime;
 
-    private boolean isRunning;
+    private static boolean isRunning;
 
-    private IRenderEvent renderEvent;
+    private static IRenderEvent renderEvent;
 
-    public Renderer(Canvas canvas, int resolution, int targetFPS)
+    public static void initialize(Canvas canvas, int resolution, int targetFPS)
     {
-        if(targetFPS <= 0 | resolution <= 0) { return; }
+        if(targetFPS <= 0 | resolution <= 0 | isRunning) { return; }
 
-        this.canvas = canvas;
-        this.resolution = resolution;
-        this.targetFPS = targetFPS;
+        Renderer.canvas = canvas;
+        Renderer.resolution = resolution;
+        Renderer.targetFPS = targetFPS;
 
         targetTime = (int)1E9 / targetFPS;
 
@@ -88,7 +88,7 @@ public class Renderer
         thread.start();
     }
 
-    private void scaleResolution()
+    private static void scaleResolution()
     {
         double factor = (canvas.getWidth() + canvas.getHeight()) / 2;
         double width = canvas.getWidth() / (factor / resolution);
@@ -96,7 +96,7 @@ public class Renderer
         size = new Dimension((int)width, (int)height);
     }
 
-    private void calculateFPS()
+    private static void calculateFPS()
     {
         totalFrames++;
 
@@ -108,11 +108,15 @@ public class Renderer
         }
     }
 
-    public void setTargetFPS(int fps) {
+    public static void setTargetFPS(int fps) {
         targetFPS = fps;
     }
 
-    public void setRenderQueue(IRenderEvent event)  {
+    static void setRenderQueue(IRenderEvent event)  {
         renderEvent = event;
+    }
+
+    public static Dimension getResolution() {
+        return new Dimension(size.width, size.height);
     }
 }

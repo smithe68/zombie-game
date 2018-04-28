@@ -1,5 +1,4 @@
-import Engine.Renderer;
-import Engine.Window;
+package Engine;
 
 import java.awt.*;
 
@@ -12,14 +11,21 @@ public class Main
 {
     public static void main(String[] args)
     {
-        // Create the Main Window
+        // Create the Engine.Main Window
         Dimension windowSize = new Dimension(800, 600);
         Window window = new Window("Zombie Game", windowSize);
 
-        // Add a Renderer to the Window's Canvas
-        Renderer renderer = new Renderer(window.canvas, 256, 60);
+        Updater.initialize();
 
-        renderer.setRenderQueue(g ->
+        Updater.setUpdateQueue(() ->
+        {
+
+        });
+
+        // Add a initialize to the Window's Canvas
+        Renderer.initialize(window.canvas, 256, 60);
+
+        Renderer.setRenderQueue(g ->
         {
             // Render stuff here
             g.setColor(Color.white);

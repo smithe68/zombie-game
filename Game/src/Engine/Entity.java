@@ -15,9 +15,6 @@ public class Entity
     public Color renderTint = Color.white;
     public BufferedImage renderImage;
 
-    private int renderX;
-    private int renderY;
-
     private Dimension screenResolution;
 
     public enum RenderType
@@ -39,8 +36,8 @@ public class Entity
 
     public final void render(Graphics g)
     {
-        renderX = (int)(x + (screenResolution.width * 0.5f) - (width * 0.5f));
-        renderY = (int)(y + (screenResolution.height * 0.5f) - (height * 0.5f));
+        int renderX = (int) (x + (screenResolution.width * 0.5f) - (width * 0.5f));
+        int renderY = (int) (-y + (screenResolution.height * 0.5f) - (height * 0.5f));
 
         g.setColor(renderTint);
 

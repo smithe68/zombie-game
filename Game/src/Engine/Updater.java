@@ -22,7 +22,7 @@ public class Updater
             {
                 long currentTime = System.nanoTime();
 
-                updateEvent.Invoke();
+                if(updateEvent != null) { updateEvent.Invoke(); }
 
                 deltaTime = (float)((currentTime - lastTime) / 1E6);
                 lastTime = currentTime;

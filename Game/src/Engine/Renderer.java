@@ -64,7 +64,7 @@ public class Renderer
                 g.setColor(Color.white);
                 g.drawString(currentFPS + "", 5, 15);
 
-                renderEvent.Invoke(g);
+                if(renderEvent != null) { renderEvent.Invoke(g); }
 
                 g.dispose();
 

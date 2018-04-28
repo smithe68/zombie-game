@@ -1,5 +1,7 @@
 package Engine;
 
+import Entities.Hero;
+
 import java.awt.*;
 
 /**
@@ -19,17 +21,14 @@ public class Main
 
         Updater.setUpdateQueue(() ->
         {
-
+            SceneManager.updateEntities();
+            Input.updateInput();
         });
 
         // Add a initialize to the Window's Canvas
         Renderer.initialize(window.canvas, 256, 60);
+        Renderer.setRenderQueue(SceneManager::renderEntities);
 
-        Renderer.setRenderQueue(g ->
-        {
-            // Render stuff here
-            g.setColor(Color.white);
-            g.fillRect(100, 100, 64, 64);
-        });
+        SceneManager.createEntity(new Hero());
     }
 }

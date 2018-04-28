@@ -44,6 +44,8 @@ public class Window
 
         canvas.requestFocus();
         canvas.transferFocus();
+
+        canvas.addKeyListener(new Input());
     }
 
     private void makeFullscreen()

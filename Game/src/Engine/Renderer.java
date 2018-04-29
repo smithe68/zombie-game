@@ -116,7 +116,8 @@ public class Renderer
         renderEvent = event;
     }
 
-    public static Dimension getResolution() {
+    public static Dimension getResolution()
+    {
         return new Dimension(size.width, size.height);
     }
 }

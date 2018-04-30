@@ -1,6 +1,6 @@
 package Engine;
 
-import Entities.Hero;
+import Entities.*;
 
 import java.awt.*;
 
@@ -30,5 +30,6 @@ public class Main
         });
 
         SceneManager.createEntity(new Hero());
+        SceneManager.createEntity(new Tile());
     }
 }

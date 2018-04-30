@@ -1,6 +1,7 @@
 package Engine;
 
 import java.awt.*;
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class SceneManager
@@ -25,5 +26,6 @@ public class SceneManager
     {
         System.out.println("Spawned " + e.getClass().getSimpleName());
         entities.add(e);
+        Collections.sort(entities);
     }
 }

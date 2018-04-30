@@ -17,7 +17,7 @@ public class SmallCircleZombie extends Entity
     public void start()
     {
         renderTint = Color.green;
-        renderType = RenderType.Ellipse;
+        renderType = RenderType.EllipseBorder;
 
         width = 16;
         height = 16;

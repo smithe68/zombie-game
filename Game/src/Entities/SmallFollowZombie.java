@@ -16,7 +16,7 @@ public class SmallFollowZombie extends Entity
 
     public void start()
     {
-        renderType = RenderType.Ellipse;
+        renderType = RenderType.EllipseBorder;
         renderTint = Color.red;
 
         hero = (Hero)SceneManager.getEntity("Hero");

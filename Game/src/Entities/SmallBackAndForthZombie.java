@@ -13,7 +13,7 @@ public class SmallBackAndForthZombie extends Entity{
 
     public void start()
     {
-        renderType = Entity.RenderType.Rectangle;
+        renderType = RenderType.RectangleBorder;
         renderTint = Color.blue;
     }
     private float movement = 0.2f*0.0001f;

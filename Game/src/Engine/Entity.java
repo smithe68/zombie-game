@@ -1,6 +1,9 @@
 package Engine;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class Entity implements Comparable<Entity>
@@ -16,6 +19,8 @@ public class Entity implements Comparable<Entity>
     public int width = 32;
     public int height = 32;
 
+    public float rotation;
+
     public int layer;
 
     public boolean hasCollision;
@@ -25,6 +30,7 @@ public class Entity implements Comparable<Entity>
     public BufferedImage renderImage;
 
     private Dimension screenResolution;
+    private AffineTransform transform;
 
     public enum RenderType
     {
@@ -36,6 +42,7 @@ public class Entity implements Comparable<Entity>
 
     public Entity()
     {
+        transform = new AffineTransform();
         screenResolution = Renderer.getResolution();
         start();
     }
@@ -44,28 +51,35 @@ public class Entity implements Comparable<Entity>
     public void fixedUpdate() {}
     public void update() {}
 
-    final void render(Graphics g)
+    final void render(Graphics2D g)
     {
-        int renderX = (int) (x + (screenResolution.width * 0.5f) - (width * 0.5f) - Camera.x);
-        int renderY = (int) (-y + (screenResolution.height * 0.5f) - (height * 0.5f) + Camera.y);
+        float renderX = (x + (screenResolution.width * 0.5f) - (width * 0.5f) - Camera.x);
+        float renderY = (-y + (screenResolution.height * 0.5f) - (height * 0.5f) + Camera.y);
 
         g.setColor(renderTint);
+        g.transform(transform);
+
+        g.rotate(Math.toRadians(rotation),
+                renderX + width * 0.5f, renderY + height * 0.5f);
 
         switch(renderType)
         {
             case Rectangle:
-                g.fillRect(renderX, renderY, width, height);
+                g.draw(new Rectangle2D.Float(renderX, renderY, width, height));
                 break;
 
             case Ellipse:
-                g.fillOval(renderX, renderY, width, height);
+                g.draw(new Ellipse2D.Float(renderX, renderY, width, height));
                 break;
 
             case Image:
                 if(renderImage == null) { return; }
-                g.drawImage(renderImage, renderX, renderY, width, height, null);
+                g.drawImage(renderImage, (int)renderX, (int)renderY, width, height, null);
                 break;
         }
+
+        g.rotate(Math.toRadians(-rotation),
+                renderX + width * 0.5f, renderY + height * 0.5f);
     }
 
     final void collision()

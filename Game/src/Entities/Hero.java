@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 
 public class Hero extends Entity
 {
-    private float moveSpeed = 0.1f;
+    private float moveSpeed = 1f;
 
     public void start()
     {
@@ -19,12 +19,15 @@ public class Hero extends Entity
 
     public void update()
     {
-        Camera.x = Mafs.lerp(Camera.x, x, Updater.deltaTime * 0.01f);
-        Camera.y = Mafs.lerp(Camera.y, y, Updater.deltaTime * 0.01f);
+        Camera.x = Mafs.lerp(Camera.x, x, Updater.deltaTime);
+        Camera.y = Mafs.lerp(Camera.y, y, Updater.deltaTime);
 
         if(Input.getKey(KeyEvent.VK_D)) { velX = moveSpeed * Updater.deltaTime; }
         if(Input.getKey(KeyEvent.VK_A)) { velX = -moveSpeed * Updater.deltaTime; }
         if(Input.getKey(KeyEvent.VK_W)) { velY = moveSpeed * Updater.deltaTime; }
         if(Input.getKey(KeyEvent.VK_S)) { velY = -moveSpeed * Updater.deltaTime; }
+
+        rotation += Updater.deltaTime;
+        if(rotation > 360) { rotation = 0; }
     }
 }

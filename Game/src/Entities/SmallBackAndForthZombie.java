@@ -27,7 +27,8 @@ public class SmallBackAndForthZombie extends Entity{
         //if (movement<=0 && x<=-50){movement*=-1;}
         if (y>=50){ movement*=-1;}
 
-
+        rotation += 1 * Updater.deltaTime;
+        if(rotation > 360) { rotation = 0; }
     }
 
 }

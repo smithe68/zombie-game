@@ -24,7 +24,7 @@ public class Updater
 
                 if(updateEvent != null) { updateEvent.Invoke(); }
 
-                deltaTime = (float)((currentTime - lastTime) / 1E6);
+                deltaTime = (float)((currentTime - lastTime) / 1E7);
                 lastTime = currentTime;
             }
         });

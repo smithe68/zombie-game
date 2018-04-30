@@ -1,6 +1,7 @@
 package Engine;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.Collections;
 import java.util.LinkedList;
 
@@ -18,7 +19,7 @@ public class SceneManager
         }
     }
 
-    static void renderEntities(Graphics g)
+    static void renderEntities(Graphics2D g)
     {
         for(int i = 0; i < entities.size(); i++)
         {

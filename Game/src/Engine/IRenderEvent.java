@@ -4,5 +4,5 @@ import java.awt.*;
 
 public interface IRenderEvent
 {
-    void Invoke(Graphics g);
+    void Invoke(Graphics2D g);
 }

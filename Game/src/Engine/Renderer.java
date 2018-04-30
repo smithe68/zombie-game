@@ -1,5 +1,7 @@
 package Engine;
 
+import javafx.scene.Scene;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -59,21 +61,21 @@ public class Renderer
                     vImage = gc.createCompatibleVolatileImage(size.width, size.height);
                 }
 
-                Graphics g = vImage.getGraphics();
+                Graphics2D g = (Graphics2D)vImage.getGraphics();
 
                 // Make the Screen Black
                 g.setColor(Color.black);
                 g.fillRect(0, 0, size.width, size.height);
 
-                if(renderEvent != null) { renderEvent.Invoke(g); }
-
                 // Draw the FPS Counter
                 g.setColor(Color.white);
                 g.drawString(currentFPS + "", 5, 15);
 
+                if(renderEvent != null) { renderEvent.Invoke(g); }
+
                 g.dispose();
 
-                g = canvas.getGraphics();
+                g = (Graphics2D)canvas.getGraphics();
                 g.drawImage(vImage, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
                 g.dispose();
 

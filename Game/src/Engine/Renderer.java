@@ -34,6 +34,8 @@ public class Renderer
         Renderer.canvas = canvas;
         Renderer.resolution = resolution;
         Renderer.targetFPS = targetFPS;
+        scaleResolution();
+
 
         targetTime = (int)1E9 / targetFPS;
 
@@ -41,7 +43,7 @@ public class Renderer
         {
             isRunning = true;
 
-            scaleResolution();
+
             GraphicsConfiguration gc = canvas.getGraphicsConfiguration();
             VolatileImage vImage = gc.createCompatibleVolatileImage(size.width, size.height);
 

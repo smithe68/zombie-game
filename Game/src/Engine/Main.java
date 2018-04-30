@@ -34,5 +34,6 @@ public class Main
         SceneManager.createEntity(new SmallBackAndForthZombie());
         SceneManager.createEntity(new SmallCircleZombie());
         SceneManager.createEntity(new SmallFollowZombie());
+        SceneManager.createEntity(new Bullet());
     }
 }

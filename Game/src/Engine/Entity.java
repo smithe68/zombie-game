@@ -15,8 +15,8 @@ public class Entity implements Comparable<Entity>
 
     public int layer;
 
-    public RenderType renderType;
     public Color renderTint = Color.white;
+    public RenderType renderType = RenderType.None;
     public BufferedImage renderImage;
 
     private Dimension screenResolution;

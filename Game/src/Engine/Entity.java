@@ -65,11 +65,11 @@ public class Entity implements Comparable<Entity>
         switch(renderType)
         {
             case Rectangle:
-                g.draw(new Rectangle2D.Float(renderX, renderY, width, height));
+                g.fill(new Rectangle2D.Float(renderX, renderY, width, height));
                 break;
 
             case Ellipse:
-                g.draw(new Ellipse2D.Float(renderX, renderY, width, height));
+                g.fill(new Ellipse2D.Float(renderX, renderY, width, height));
                 break;
 
             case Image:

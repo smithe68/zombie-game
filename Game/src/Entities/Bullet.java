@@ -23,8 +23,8 @@ public class Bullet extends Entity{
     }
     public void update()
     {
-        velX = (originX+1)*Updater.deltaTime;
-        //velY -= (originY+1)*Updater.deltaTime;
+        velX =(float)Math.cos(rotation)+(originX+1)*Updater.deltaTime;
+        velY = (float) Math.sin(rotation)+(originY+1)*Updater.deltaTime;
         if(velX>=100){
             SceneManager.destroyEntity(this);
 

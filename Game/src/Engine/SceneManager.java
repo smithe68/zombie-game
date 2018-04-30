@@ -6,19 +6,24 @@ import java.util.LinkedList;
 
 public class SceneManager
 {
-    private static LinkedList<Entity> entities = new LinkedList<>();
+    static LinkedList<Entity> entities = new LinkedList<>();
 
     static void updateEntities()
     {
-        for(int i = 0; i < entities.size(); i++) {
+        for(int i = 0; i < entities.size(); i++)
+        {
             entities.get(i).update();
+            entities.get(i).collision();
+            entities.get(i).physics();
         }
     }
 
     static void renderEntities(Graphics g)
     {
-        for(int i = 0; i < entities.size(); i++) {
+        for(int i = 0; i < entities.size(); i++)
+        {
             entities.get(i).render(g);
+            entities.get(i).fixedUpdate();
         }
     }
 

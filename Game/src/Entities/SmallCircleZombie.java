@@ -10,23 +10,27 @@ import java.awt.event.KeyEvent;
 /**
  * Created by evan on 4/29/2018.
  */
-public class SmallCircleZombie extends Entity {
-    private double angle =0;
+public class SmallCircleZombie extends Entity
+{
+    private int angle;
+
     public void start()
     {
-        renderType = RenderType.Rectangle;
         renderTint = Color.green;
+        renderType = RenderType.Ellipse;
+
+        width = 16;
+        height = 16;
+
+        y = -64 + height / 2;
     }
 
-
-    public void update()
+    public void fixedUpdate()
     {
+        angle += 1;
+        if(angle > 360) { angle = 0; }
 
-          x = (float) (Math.cos(angle)*100);
-          y = (float) (Math.sin(angle)*100);
-          angle = angle+0.0000005;
-          if (angle == 360){angle = 0;}
-
+        velX = (float)Math.cos(Math.toRadians(angle));
+        velY = (float)Math.sin(Math.toRadians(angle));
     }
-
 }

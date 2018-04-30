@@ -1,7 +1,10 @@
 package Engine;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
+import java.io.IOException;
 
 /**
  * Creates a Loop on a Separate CPU Thread where
@@ -26,6 +29,7 @@ public class Renderer
     private static boolean isRunning;
 
     private static IRenderEvent renderEvent;
+    private static GraphicsConfiguration gc;
 
     public static void initialize(Canvas canvas, int resolution, int targetFPS)
     {
@@ -34,8 +38,8 @@ public class Renderer
         Renderer.canvas = canvas;
         Renderer.resolution = resolution;
         Renderer.targetFPS = targetFPS;
-        scaleResolution();
 
+        scaleResolution();
 
         targetTime = (int)1E9 / targetFPS;
 
@@ -43,8 +47,7 @@ public class Renderer
         {
             isRunning = true;
 
-
-            GraphicsConfiguration gc = canvas.getGraphicsConfiguration();
+            gc = canvas.getGraphicsConfiguration();
             VolatileImage vImage = gc.createCompatibleVolatileImage(size.width, size.height);
 
             while(isRunning)
@@ -118,8 +121,26 @@ public class Renderer
         renderEvent = event;
     }
 
-    public static Dimension getResolution()
-    {
+    public static Dimension getResolution() {
         return new Dimension(size.width, size.height);
+    }
+
+    public static BufferedImage getImage(String name)
+    {
+        String path = "/Resources/Sprites/" + name;
+        BufferedImage finalImage = null;
+        BufferedImage raw;
+
+        try
+        {
+            raw = ImageIO.read(Renderer.class.getResource(path));
+            finalImage = gc.createCompatibleImage(raw.getWidth(), raw.getHeight(), raw.getTransparency());
+            finalImage.getGraphics().drawImage(raw, 0, 0, raw.getWidth(), raw.getHeight(), null);
+        }
+        catch(IOException e) {
+            System.err.println("Image [" + path + "] does not exist");
+        }
+
+        return finalImage;
     }
 }

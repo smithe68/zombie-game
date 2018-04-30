@@ -2,13 +2,18 @@ package Entities;
 
 import Engine.Entity;
 import Engine.Input;
+import Engine.Renderer;
 import Engine.Updater;
 
 import java.awt.event.KeyEvent;
 
 public class Hero extends Entity
 {
-    public void start() { renderType = RenderType.Rectangle; }
+    public void start()
+    {
+        renderImage = Renderer.getImage("Smiley.png");
+        renderType = RenderType.Image;
+    }
 
     public void update()
     {

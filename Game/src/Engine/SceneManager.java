@@ -28,4 +28,16 @@ public class SceneManager
         entities.add(e);
         Collections.sort(entities);
     }
+
+    public static Entity getEntity(String tag)
+    {
+        for(int i = 0; i < entities.size(); i++)
+        {
+            if(entities.get(i).tag.equals(tag)) {
+                return entities.get(i);
+            }
+        }
+
+        return null;
+    }
 }

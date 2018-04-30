@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class Entity implements Comparable<Entity>
 {
-    public String tag;
+    public String tag = getClass().getSimpleName();
 
     public float x;
     public float y;

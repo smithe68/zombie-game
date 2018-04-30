@@ -1,9 +1,6 @@
 package Engine;
 
-import Entities.Hero;
-import Entities.SmallBackAndForthZombie;
-import Entities.SmallCircleZombie;
-import Entities.Tile;
+import Entities.*;
 
 import java.awt.*;
 
@@ -36,6 +33,6 @@ public class Main
         SceneManager.createEntity(new Tile());
         SceneManager.createEntity(new SmallBackAndForthZombie());
         SceneManager.createEntity(new SmallCircleZombie());
-
+        SceneManager.createEntity(new SmallFollowZombie());
     }
 }

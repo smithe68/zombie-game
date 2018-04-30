@@ -37,6 +37,8 @@ public class Entity implements Comparable<Entity>
         None,
         Rectangle,
         Ellipse,
+        RectangleBorder,
+        EllipseBorder,
         Image
     }
 
@@ -70,6 +72,14 @@ public class Entity implements Comparable<Entity>
 
             case Ellipse:
                 g.fill(new Ellipse2D.Float(renderX, renderY, width, height));
+                break;
+
+            case RectangleBorder:
+                g.draw(new Rectangle2D.Float(renderX, renderY, width, height));
+                break;
+
+            case EllipseBorder:
+                g.draw(new Ellipse2D.Float(renderX, renderY, width, height));
                 break;
 
             case Image:

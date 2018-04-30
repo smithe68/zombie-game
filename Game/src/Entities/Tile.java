@@ -11,7 +11,7 @@ public class Tile extends Entity
         renderType = RenderType.Rectangle;
         renderTint = Color.GRAY;
 
-        width = 64;
-        height = 64;
+        width = 128;
+        height = 128;
     }
 }

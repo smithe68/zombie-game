@@ -65,11 +65,11 @@ public class Renderer
                 g.setColor(Color.black);
                 g.fillRect(0, 0, size.width, size.height);
 
+                if(renderEvent != null) { renderEvent.Invoke(g); }
+
                 // Draw the FPS Counter
                 g.setColor(Color.white);
                 g.drawString(currentFPS + "", 5, 15);
-
-                if(renderEvent != null) { renderEvent.Invoke(g); }
 
                 g.dispose();
 

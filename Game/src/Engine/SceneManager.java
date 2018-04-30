@@ -46,4 +46,11 @@ public class SceneManager
 
         return null;
     }
+
+    public static void destroyEntity(Entity e)
+    {
+        if(e == null) { return; }
+        System.out.println("Destroyed Entity" + e.getClass().getSimpleName());
+        entities.remove(e);
+    }
 }

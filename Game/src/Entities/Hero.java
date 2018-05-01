@@ -28,10 +28,9 @@ public class Hero extends Entity
         if(Input.getKey(KeyEvent.VK_W)) { velY = moveSpeed * Updater.deltaTime; }
         if(Input.getKey(KeyEvent.VK_S)) { velY = -moveSpeed * Updater.deltaTime; }
 
-        rotation += Updater.deltaTime;
-        if(rotation > 360) { rotation = 0; }
 
-        if(Input.getKeyDown(KeyEvent.VK_SPACE)) {
+
+        if(Input.getKeyUp(KeyEvent.VK_SPACE)||Input.getKeyDown(KeyEvent.VK_SPACE)) {
             SceneManager.createEntity(new Bullet());
         }
     }

@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 
 public class Hero extends Entity
 {
+   private static int health = 100;
     private float moveSpeed = 1f;
 
     public void start()
@@ -13,6 +14,7 @@ public class Hero extends Entity
         renderImage = Renderer.getImage("Smiley.png");
         renderType = RenderType.Image;
         layer = 1;
+
 
         hasCollision = true;
     }
@@ -33,5 +35,8 @@ public class Hero extends Entity
         if(Input.getKeyDown(KeyEvent.VK_SPACE)) {
             SceneManager.createEntity(new Bullet());
         }
+    }
+   public static int getHeroHealth(){
+        return health;
     }
 }

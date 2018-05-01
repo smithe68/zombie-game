@@ -19,6 +19,7 @@ public class Entity implements Comparable<Entity>
     public int width = 32;
     public int height = 32;
 
+
     public float rotation;
 
     public int layer;

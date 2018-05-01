@@ -16,19 +16,19 @@ public class SmallBackAndForthZombie extends Entity{
         renderType = RenderType.RectangleBorder;
         renderTint = Color.blue;
     }
-    private float movement = 0.2f*0.0001f;
+
+    private float movement = 0.3f;
 
     public void update()
     {
+        velX = movement;
+        //velY = movement;
+        if (x>=50){movement = -0.3f;}
+        //if (y>=50){movement = -0.3f;}
+        if (x<=-50){movement = 0.3f;}// ive tried setting it using -movement and *= -1 and both result in it not working this is the only way that works that ive tried
 
-        x += movement;
-        y -= movement;
-        if (x>=50){movement *=-1;}
         //if (movement<=0 && x<=-50){movement*=-1;}
-        if (y>=50){ movement*=-1;}
-
-        rotation += 1 * Updater.deltaTime;
-        if(rotation > 360) { rotation = 0; }
+        if (y>=50){ movement*= -1;}
     }
 
 }

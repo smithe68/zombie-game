@@ -1,5 +1,6 @@
 package Engine;
 
+import Entities.Hero;
 import javafx.scene.Scene;
 
 import javax.imageio.ImageIO;
@@ -67,9 +68,10 @@ public class Renderer
                 g.setColor(Color.black);
                 g.fillRect(0, 0, size.width, size.height);
 
-                // Draw the FPS Counter
+                // Draw the FPS Countera
                 g.setColor(Color.white);
                 g.drawString(currentFPS + "", 5, 15);
+                g.drawString("HEALTH "+ Hero.getHeroHealth(),220,15);
 
                 if(renderEvent != null) { renderEvent.Invoke(g); }
 

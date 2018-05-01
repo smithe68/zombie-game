@@ -10,10 +10,19 @@ public class Input implements KeyListener
     public static boolean getKey(int keycode) { return currentKeys[keycode]; }
 
     public static boolean getKeyDown(int keycode) {
+        try
+        {
+            Thread.sleep(10);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
         return currentKeys[keycode] && !lastKeys[keycode];
     }
 
     public static boolean getKeyUp(int keycode) {
+
         return !currentKeys[keycode] && lastKeys[keycode];
     }
 
@@ -26,11 +35,13 @@ public class Input implements KeyListener
 
     @Override
     public void keyPressed(KeyEvent e) {
+
         currentKeys[e.getKeyCode()] = true;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+
         currentKeys[e.getKeyCode()] = false;
     }
 }

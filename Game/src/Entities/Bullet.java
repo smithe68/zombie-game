@@ -23,12 +23,17 @@ public class Bullet extends Entity
         height = 6;
 
         hero = (Hero)SceneManager.getEntity("Hero");
-
         initialVelX = (float)Math.cos(hero.rotation);
         initialVelY = (float)Math.sin(hero.rotation);
+        x = hero.x;
+        y= hero.y;
+
+
     }
     public void update()
     {
+
+
         velX = initialVelX * Updater.deltaTime;
         velY = initialVelY * Updater.deltaTime;
 

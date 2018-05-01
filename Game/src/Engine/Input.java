@@ -14,7 +14,7 @@ public class Input implements KeyListener
     public static boolean getKeyDown(int keycode) {
         try
         {
-            TimeUnit.MILLISECONDS.sleep(time);
+            TimeUnit.MILLISECONDS.sleep(time);//yes jakub this is stupid but its the idea that counts even when it dosnt fix a single thing
         }
         catch(InterruptedException ex)
         {

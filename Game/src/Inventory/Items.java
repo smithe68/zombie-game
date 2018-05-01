@@ -2,13 +2,13 @@ package Inventory;
 
 import java.awt.image.BufferedImage;
 
-public class items {
+public class Items {
     private String itemName;
     private String itemType;
     private int ID;
     private BufferedImage itemImage;
 
-    public items(String itemName, int ID, String itemType, String itemImage){
+    public Items(String itemName, int ID, String itemType, String itemImage){
 
     }
 

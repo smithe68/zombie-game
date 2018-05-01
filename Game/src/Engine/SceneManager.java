@@ -1,13 +1,13 @@
 package Engine;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.util.Collections;
 import java.util.LinkedList;
 
 public class SceneManager
 {
     static LinkedList<Entity> entities = new LinkedList<>();
+    private static LinkedList<Entity> entitiesToSpawn = new LinkedList<>();
 
     static void updateEntities()
     {
@@ -17,6 +17,14 @@ public class SceneManager
             entities.get(i).collision();
             entities.get(i).physics();
         }
+
+        for(int i = 0; i < entitiesToSpawn.size(); i++)
+        {
+            entities.add(entitiesToSpawn.get(i));
+            entitiesToSpawn.remove(i);
+        }
+
+        Collections.sort(entities);
     }
 
     static void renderEntities(Graphics2D g)
@@ -28,11 +36,10 @@ public class SceneManager
         }
     }
 
-    public static void createEntity(Entity e)
+    public static Entity createEntity(Entity e)
     {
-        System.out.println("Spawned " + e.getClass().getSimpleName());
-        entities.add(e);
-        Collections.sort(entities);
+        entitiesToSpawn.add(e);
+        return e;
     }
 
     public static Entity getEntity(String tag)
@@ -50,7 +57,6 @@ public class SceneManager
     public static void destroyEntity(Entity e)
     {
         if(e == null) { return; }
-        System.out.println("Destroyed Entity" + e.getClass().getSimpleName());
         entities.remove(e);
     }
 }

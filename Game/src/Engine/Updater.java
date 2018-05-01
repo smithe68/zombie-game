@@ -3,12 +3,9 @@ package Engine;
 public class Updater
 {
     public static float deltaTime;
-
     private static boolean isRunning;
 
-    private static IUpdateEvent updateEvent;
-
-    public static void initialize()
+    static void initialize()
     {
         if(isRunning) { return; }
 
@@ -20,20 +17,17 @@ public class Updater
 
             while(isRunning)
             {
-                long currentTime = System.nanoTime();
+                long startTime = System.nanoTime();
 
-                if(updateEvent != null) { updateEvent.Invoke(); }
+                SceneManager.updateEntities();
+                Input.updateInput();
 
-                deltaTime = (float)((currentTime - lastTime) / 1E7);
-                lastTime = currentTime;
+                deltaTime = (float)((startTime - lastTime) / 1E7);
+                lastTime = startTime;
             }
         });
 
         thread.setName("Updater Thread");
         thread.start();
-    }
-
-    static void setUpdateQueue(IUpdateEvent event) {
-        updateEvent = event;
     }
 }

@@ -31,7 +31,6 @@ public class Renderer
 
     private static boolean isRunning;
 
-    private static IRenderEvent renderEvent;
     private static GraphicsConfiguration gc;
 
     public static void initialize(Canvas canvas, int resolution, int targetFPS)
@@ -73,7 +72,7 @@ public class Renderer
                 g.drawString(currentFPS + "", 5, 15);
                 g.drawString("HEALTH "+ Hero.getHeroHealth(),220,15);
 
-                if(renderEvent != null) { renderEvent.Invoke(g); }
+                SceneManager.renderEntities(g);
 
                 g.dispose();
 
@@ -119,10 +118,6 @@ public class Renderer
 
     public static void setTargetFPS(int fps) {
         targetFPS = fps;
-    }
-
-    static void setRenderQueue(IRenderEvent event)  {
-        renderEvent = event;
     }
 
     public static Dimension getResolution() {

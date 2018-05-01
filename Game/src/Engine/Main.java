@@ -16,18 +16,10 @@ public class Main
         // Create the Engine.Main Window
         Dimension windowSize = new Dimension(800, 600);
         Window window = new Window("Zombie Game", windowSize);
+        window.canvas.addKeyListener(new Input());
 
-        // Add a initialize to the Window's Canvas
         Renderer.initialize(window.canvas, 256, 60);
-        Renderer.setRenderQueue(SceneManager::renderEntities);
-
         Updater.initialize();
-
-        Updater.setUpdateQueue(() ->
-        {
-            SceneManager.updateEntities();
-            Input.updateInput();
-        });
 
         SceneManager.createEntity(new Hero());
         SceneManager.createEntity(new Tile());

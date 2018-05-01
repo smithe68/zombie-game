@@ -15,7 +15,6 @@ public class Hero extends Entity
         renderType = RenderType.Image;
         layer = 1;
 
-
         hasCollision = true;
     }
 

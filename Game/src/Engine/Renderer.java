@@ -1,7 +1,6 @@
 package Engine;
 
 import Entities.Hero;
-import javafx.scene.Scene;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -67,12 +66,11 @@ public class Renderer
                 g.setColor(Color.black);
                 g.fillRect(0, 0, size.width, size.height);
 
-                // Draw the FPS Countera
+                SceneManager.renderEntities(g);
+
+                // Draw the FPS Counter
                 g.setColor(Color.white);
                 g.drawString(currentFPS + "", 5, 15);
-                g.drawString("HEALTH "+ Hero.getHeroHealth(),220,15);
-
-                SceneManager.renderEntities(g);
 
                 g.dispose();
 

@@ -13,5 +13,7 @@ public class Tile extends Entity
 
         width = 128;
         height = 128;
+
+        layer = -1;
     }
 }

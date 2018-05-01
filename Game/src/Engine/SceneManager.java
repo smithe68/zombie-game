@@ -18,13 +18,12 @@ public class SceneManager
             entities.get(i).physics();
         }
 
-        for(int i = 0; i < entitiesToSpawn.size(); i++)
+        for(int i = entitiesToSpawn.size() - 1; i >= 0; i--)
         {
             entities.add(entitiesToSpawn.get(i));
             entitiesToSpawn.remove(i);
+            Collections.sort(entities);
         }
-
-        Collections.sort(entities);
     }
 
     static void renderEntities(Graphics2D g)

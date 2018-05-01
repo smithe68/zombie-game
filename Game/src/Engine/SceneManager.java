@@ -14,8 +14,7 @@ public class SceneManager
         for(int i = 0; i < entities.size(); i++)
         {
             entities.get(i).update();
-            entities.get(i).collision();
-            entities.get(i).physics();
+            entities.get(i).physics.update();
         }
 
         for(int i = entitiesToSpawn.size() - 1; i >= 0; i--)
@@ -28,10 +27,8 @@ public class SceneManager
 
     static void renderEntities(Graphics2D g)
     {
-        for(int i = 0; i < entities.size(); i++)
-        {
-            entities.get(i).render(g);
-            entities.get(i).fixedUpdate();
+        for(int i = 0; i < entities.size(); i++) {
+            entities.get(i).visual.render(g);
         }
     }
 
@@ -43,11 +40,17 @@ public class SceneManager
 
     public static Entity getEntity(String tag)
     {
-        for(int i = 0; i < entities.size(); i++)
+        try
         {
-            if(entities.get(i).tag.equals(tag)) {
-                return entities.get(i);
+            for(int i = 0; i < entities.size(); i++)
+            {
+                if(entities.get(i).tag.equals(tag)) {
+                    return entities.get(i);
+                }
             }
+        }
+        catch(NullPointerException e) {
+            System.err.println("Entity [" + tag + "] not Found!");
         }
 
         return null;

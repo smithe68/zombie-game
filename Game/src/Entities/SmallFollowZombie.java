@@ -1,9 +1,6 @@
 package Entities;
 
-import Engine.Entity;
-import Engine.Mafs;
-import Engine.SceneManager;
-import Engine.Updater;
+import Engine.*;
 
 import java.awt.*;
 import java.util.Random;
@@ -14,25 +11,22 @@ import java.util.Random;
 public class SmallFollowZombie extends Entity
 {
     private Hero hero;
-
-   private Random random = new Random();
+    private Random random = new Random();
     private int randomInt;
 
     public void start()
     {
-        renderType = RenderType.EllipseBorder;
-        renderTint = Color.red;
+        visual.setRenderType(Visual.RenderType.EllipseBorder);
+        visual.setTint(Color.red);
 
         hero = (Hero)SceneManager.getEntity("Hero");
-
-
     }
 
 
     public void update()
     {
         randomInt = random.nextInt(10-1)+1;
-        x = Mafs.lerp(x, hero.x, Updater.deltaTime * 0.000995f*randomInt);
-        y = Mafs.lerp(y, hero.y, Updater.deltaTime * 0.000995f*randomInt);
+        transform.setX(Mafs.lerp(transform.getX(), hero.transform.getX(), Updater.deltaTime * 0.000995f*randomInt));
+        transform.setY(Mafs.lerp(transform.getY(), hero.transform.getY(), Updater.deltaTime * 0.000995f*randomInt));
     }
 }

@@ -1,9 +1,6 @@
 package Entities;
 
-import Engine.Entity;
-import Engine.Mafs;
-import Engine.SceneManager;
-import Engine.Updater;
+import Engine.*;
 
 import java.awt.*;
 
@@ -16,40 +13,28 @@ public class Bullet extends Entity
 
     public void start()
     {
-        renderType = RenderType.Rectangle;
-        renderTint = Color.WHITE;
-
-        width = 6;
-        height = 6;
-
         hero = (Hero)SceneManager.getEntity("Hero");
 
-        x = hero.x;
-        y = hero.y;
+        visual.setRenderType(Visual.RenderType.Rectangle);
+        visual.setTint(Color.WHITE);
 
+        transform.setSize(6, 6);
+        transform.setPos(hero.transform.getX(), hero.transform.getY());
 
-        initialVelX = (float)Math.cos(rotation*x);
-        initialVelY = -(float)Math.sin(rotation*-y);
-
-
-
-
+        initialVelX = (float)Math.cos(transform.getRot() * transform.getX());
+        initialVelY = -(float)Math.sin(transform.getRot() * -transform.getY());
     }
 
     public void update()
     {
+        physics.setVelX(initialVelX * Updater.deltaTime);
+        physics.setVelY(initialVelY * Updater.deltaTime);
 
-
-
-
-        velX = initialVelX * Updater.deltaTime;
-        velY = initialVelY * Updater.deltaTime;
-
-        if(velX>=100){
+        if(physics.getVelX() >= 100){
             SceneManager.destroyEntity(this);
-
         }
-        if(velY>=100){
+
+        if(physics.getVelY() >= 100){
             SceneManager.destroyEntity(this);
         }
     }

@@ -3,6 +3,7 @@ package Entities;
 import Engine.Entity;
 import Engine.Renderer;
 import Engine.Updater;
+import Engine.Visual;
 
 import java.awt.*;
 
@@ -13,22 +14,15 @@ public class SmallBackAndForthZombie extends Entity{
 
     public void start()
     {
-        renderType = RenderType.RectangleBorder;
-        renderTint = Color.blue;
+        visual.setRenderType(Visual.RenderType.Rectangle);
+        visual.setTint(Color.blue);
     }
 
     private float movement = 0.3f*Updater.deltaTime;
 
     public void update()
     {
-        velX = movement;
-        //velY = movement;
-        if (x>=50){movement = -0.3f*Updater.deltaTime;}
-        //if (y>=50){movement = -0.3f;}
-        if (x<=-50){movement = 0.3f*Updater.deltaTime;}// ive tried setting it using -movement and *= -1 and both result in it not working this is the only way that works that ive tried
 
-        //if (movement<=0 && x<=-50){movement*=-1;}
-        if (y>=50){ movement*= -1;}
     }
 
 }

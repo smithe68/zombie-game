@@ -3,6 +3,7 @@ package Entities;
 import Engine.Entity;
 import Engine.Input;
 import Engine.Updater;
+import Engine.Visual;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -16,21 +17,19 @@ public class SmallCircleZombie extends Entity
 
     public void start()
     {
-        renderTint = Color.green;
-        renderType = RenderType.EllipseBorder;
+        visual.setTint(Color.green);
+        visual.setRenderType(Visual.RenderType.EllipseBorder);
 
-        width = 16;
-        height = 16;
-
-        y = -64 + height / 2;
+        transform.setSize(16, 16);
+        transform.setPos(transform.getX(), -64 + transform.getHeight() / 2);
     }
 
-    public void fixedUpdate()
+    public void update()
     {
         angle += 1;
         if(angle > 360) { angle = 0; }
 
-        velX = (float)Math.cos(Math.toRadians(angle));
-        velY = (float)Math.sin(Math.toRadians(angle));
+        physics.setVelX((float)Math.cos(Math.toRadians(angle)));
+        physics.setVelY((float)Math.sin(Math.toRadians(angle)));
     }
 }

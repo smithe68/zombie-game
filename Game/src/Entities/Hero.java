@@ -29,5 +29,9 @@ public class Hero extends Entity
 
         rotation += Updater.deltaTime;
         if(rotation > 360) { rotation = 0; }
+
+        if(Input.getKeyDown(KeyEvent.VK_SPACE)) {
+            SceneManager.createEntity(new Bullet());
+        }
     }
 }

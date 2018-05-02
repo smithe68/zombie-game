@@ -1,36 +1,54 @@
 package Engine;
 
 import java.awt.event.*;
+import java.util.HashMap;
 
 public class Input implements KeyListener
 {
-    private static boolean[] currentKeys = new boolean[196];
-    private static boolean[] lastKeys = new boolean[196];
+    private static HashMap<Integer, Boolean> holdKeys = new HashMap<>();
+    private static HashMap<Integer, Boolean> pressKeys = new HashMap<>();
 
-    public static boolean getKey(int keycode) { return currentKeys[keycode]; }
-
-    public static boolean getKeyDown(int keycode) {
-        return currentKeys[keycode] && !lastKeys[keycode];
+    public static boolean getKey(int keycode) {
+        return holdKeys.containsKey(keycode) && holdKeys.get(keycode);
     }
 
-    public static boolean getKeyUp(int keycode) {
-        return !currentKeys[keycode] && lastKeys[keycode];
-    }
+    public static boolean getKeyDown(int keycode)
+    {
+        var result = false;
 
-    static void updateInput() {
-        lastKeys = currentKeys.clone();
+        try
+        {
+            if(pressKeys.containsKey(keycode))
+            {
+                if(pressKeys.get(keycode))
+                {
+                    result = true;
+                    pressKeys.put(keycode, false);
+                }
+            }
+        }
+        catch (NullPointerException ignored) {}
+
+        return result;
     }
 
     @Override
     public void keyTyped(KeyEvent e) { }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-        currentKeys[e.getKeyCode()] = true;
+    public void keyPressed(KeyEvent e)
+    {
+        holdKeys.put(e.getKeyCode(), true);
+
+        if(!pressKeys.containsKey(e.getKeyCode())) {
+            pressKeys.put(e.getKeyCode(), true);
+        }
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-        currentKeys[e.getKeyCode()] = false;
+    public void keyReleased(KeyEvent e)
+    {
+        holdKeys.put(e.getKeyCode(), false);
+        pressKeys.remove(e.getKeyCode());
     }
 }

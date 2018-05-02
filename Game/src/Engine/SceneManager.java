@@ -18,10 +18,6 @@ public class SceneManager
 
         SceneManager.createEntity(new Hero());
         SceneManager.createEntity(new Tile());
-        SceneManager.createEntity(new SmallBackAndForthZombie());
-        SceneManager.createEntity(new SmallCircleZombie());
-        SceneManager.createEntity(new SmallFollowZombie());
-        SceneManager.createEntity(new Bullet());
     }
 
     static void updateEntities()

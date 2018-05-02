@@ -13,7 +13,7 @@ public class Hero extends Entity
     {
         visual.setRenderType(Visual.RenderType.Image);
         visual.setSprite(Renderer.getImage("Smiley.png"));
-        visual.setLayer(-1);
+        visual.setLayer(1);
 
         physics.setHasCollision(true);
     }

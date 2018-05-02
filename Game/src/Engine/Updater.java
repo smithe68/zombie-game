@@ -23,8 +23,6 @@ public class Updater
                     SceneManager.updateEntities();
                 }
 
-                Input.updateInput();
-
                 deltaTime = (float)((startTime - lastTime) / 1E7);
                 lastTime = startTime;
             }

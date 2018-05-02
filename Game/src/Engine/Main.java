@@ -18,7 +18,7 @@ public class Main
 
         // Initialize Engine Components
         Renderer.initialize(window.canvas, 256, 60);
-        Updater.initialize();
         SceneManager.initialize();
+        Updater.initialize();
     }
 }

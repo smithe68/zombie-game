@@ -19,7 +19,10 @@ public class Updater
             {
                 long startTime = System.nanoTime();
 
-                SceneManager.updateEntities();
+                if(SceneManager.entities != null) {
+                    SceneManager.updateEntities();
+                }
+
                 Input.updateInput();
 
                 deltaTime = (float)((startTime - lastTime) / 1E7);

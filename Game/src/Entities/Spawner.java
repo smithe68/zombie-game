@@ -2,18 +2,20 @@ package Entities;
 
 import Engine.Entity;
 import Engine.SceneManager;
+import Engine.Visual;
 
 import java.awt.*;
 
 /**
  * Created by evan on 4/29/2018.
  */
-public class Spawner extends Entity {
-    int timer = 0;
+public class Spawner extends Entity
+{
+    private int timer = 0;
+
     public void start()
     {
-        renderType = RenderType.Rectangle;
-
+        visual.setRenderType(Visual.RenderType.Rectangle);
     }
 
 

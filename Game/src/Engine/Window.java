@@ -9,7 +9,7 @@ import java.awt.event.*;
  */
 public class Window
 {
-    public Canvas canvas;
+    Canvas canvas;
 
     private Frame frame;
 
@@ -19,7 +19,7 @@ public class Window
         makeFullscreen();
     }
 
-    public Window(String title, Dimension size)
+    Window(String title, Dimension size)
     {
         frame = new Frame(title);
         frame.setPreferredSize(size);

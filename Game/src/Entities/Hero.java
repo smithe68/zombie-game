@@ -28,7 +28,7 @@ public class Hero extends Entity
         if(Input.getKey(KeyEvent.VK_W)) { physics.setVelY(moveSpeed * Updater.deltaTime); }
         if(Input.getKey(KeyEvent.VK_S)) { physics.setVelY(-moveSpeed * Updater.deltaTime); }
 
-        if(Input.getKeyUp(KeyEvent.VK_SPACE) || Input.getKeyDown(KeyEvent.VK_SPACE)) {
+        if(Input.getKeyDown(KeyEvent.VK_SPACE)) {
             SceneManager.createEntity(new Bullet());
         }
     }

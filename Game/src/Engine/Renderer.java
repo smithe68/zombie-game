@@ -66,7 +66,9 @@ public class Renderer
                 g.setColor(Color.black);
                 g.fillRect(0, 0, size.width, size.height);
 
-                SceneManager.renderEntities(g);
+                if(SceneManager.entities != null) {
+                    SceneManager.renderEntities(g);
+                }
 
                 // Draw the FPS Counter
                 g.setColor(Color.white);

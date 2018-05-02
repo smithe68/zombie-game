@@ -1,13 +1,28 @@
 package Engine;
 
+import Entities.*;
+
 import java.awt.*;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.*;
 
 public class SceneManager
 {
-    static LinkedList<Entity> entities = new LinkedList<>();
-    private static LinkedList<Entity> entitiesToSpawn = new LinkedList<>();
+    static LinkedList<Entity> entities;
+
+    private static Queue<Entity> spawnQueue;
+
+    static void initialize()
+    {
+        entities = new LinkedList<>();
+        spawnQueue = new LinkedList<>();
+
+        SceneManager.createEntity(new Hero());
+        SceneManager.createEntity(new Tile());
+        SceneManager.createEntity(new SmallBackAndForthZombie());
+        SceneManager.createEntity(new SmallCircleZombie());
+        SceneManager.createEntity(new SmallFollowZombie());
+        SceneManager.createEntity(new Bullet());
+    }
 
     static void updateEntities()
     {
@@ -17,10 +32,9 @@ public class SceneManager
             entities.get(i).physics.update();
         }
 
-        for(int i = entitiesToSpawn.size() - 1; i >= 0; i--)
+        for(int i = 0; i < spawnQueue.size(); i++)
         {
-            entities.add(entitiesToSpawn.get(i));
-            entitiesToSpawn.remove(i);
+            entities.add(spawnQueue.remove());
             Collections.sort(entities);
         }
     }
@@ -34,7 +48,7 @@ public class SceneManager
 
     public static Entity createEntity(Entity e)
     {
-        entitiesToSpawn.add(e);
+        spawnQueue.add(e);
         return e;
     }
 

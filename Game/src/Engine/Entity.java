@@ -19,6 +19,7 @@ public class Entity implements Comparable<Entity>
     }
 
     public void start() {}
+    public void fixedUpdate() {}
     public void update() {}
 
     @Override

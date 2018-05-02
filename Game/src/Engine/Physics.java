@@ -1,6 +1,7 @@
 package Engine;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 public final class Physics
 {
@@ -10,6 +11,8 @@ public final class Physics
     private Transform transform;
 
     private boolean hasCollision;
+
+    private CollisionEvent collisionEvent;
 
     public Physics(Transform transform) {
         this.transform = transform;
@@ -34,21 +37,17 @@ public final class Physics
         {
             Entity entity = SceneManager.entities.get(i);
             if(!entity.physics.hasCollision | entity.physics == this) { continue; }
-            Rectangle rect = entity.physics.getCollider();
+            var rect = entity.physics.getCollider();
 
-            if(rect.contains(getCollider()))
-            {
-                if(entity.transform.getX() > transform.getX() && velX < 0) { velX = 0; }
-                if(entity.transform.getX() < transform.getX() && velX > 0) { velX = 0; }
-                if(entity.transform.getY() > transform.getY() && velY < 0) { velY = 0; }
-                if(entity.transform.getY() < transform.getY() && velY > 0) { velY = 0; }
+            if(getCollider().contains(rect)) {
+                if(collisionEvent != null) { collisionEvent.Invoke(entity); }
             }
         }
     }
 
-    public Rectangle getCollider()
+    public Rectangle2D.Float getCollider()
     {
-        return new Rectangle((int)transform.getX(), (int)transform.getY(),
+        return new Rectangle.Float(transform.getX(), transform.getY(),
                 transform.getWidth(), transform.getHeight());
     }
 
@@ -66,5 +65,9 @@ public final class Physics
 
     public void setHasCollision(boolean hasCollision) {
         this.hasCollision = hasCollision;
+    }
+
+    public void setCollisionEvent(CollisionEvent e) {
+        collisionEvent = e;
     }
 }

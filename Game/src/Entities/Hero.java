@@ -2,12 +2,15 @@ package Entities;
 
 import Engine.*;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Hero extends Entity
 {
-    private int health = 100;
+    private float health = 100f;
     private float moveSpeed = 1f;
+
+    private ProgressBar healthBar;
 
     public void start()
     {
@@ -16,6 +19,9 @@ public class Hero extends Entity
         visual.setLayer(1);
 
         physics.setHasCollision(true);
+
+        healthBar = (ProgressBar)SceneManager.createEntity(new ProgressBar());
+        setupHealthBar();
     }
 
     public void update()
@@ -37,5 +43,23 @@ public class Hero extends Entity
         float mouseY = Input.getRelativeMouseY();
 
         transform.setRot((float)Math.toDegrees(Math.atan2(mouseY, mouseX)));
+
+        healthBar.fillAmount = health / 100f;
+    }
+
+    private void setupHealthBar()
+    {
+        healthBar.transform.setPos(-10, 10);
+        healthBar.transform.setSize(84, 16);
+
+        healthBar.visual.setAnchor(Visual.Anchor.TOP_RIGHT);
+
+        healthBar.fillColor = Color.red;
+    }
+
+    public void takeDamage(float amount)
+    {
+        health -= amount;
+        health = Mafs.clamp(health, 0, 100);
     }
 }

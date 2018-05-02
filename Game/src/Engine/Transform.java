@@ -7,8 +7,8 @@ public final class Transform
 
     private float rotation;
 
-    private int width = 32;
-    private int height = 32;
+    private float width = 32;
+    private float height = 32;
 
     public void setPos(float x, float y)
     {
@@ -36,12 +36,15 @@ public final class Transform
 
     public float getRot() { return rotation; }
 
-    public void setSize(int width, int height)
+    public void setSize(float width, float height)
     {
         this.width = width;
         this.height = height;
     }
 
-    public int getWidth() { return width; }
-    public int getHeight() { return height; }
+    public float getWidth() { return width; }
+    public float getHeight() { return height; }
+
+    public void setWidth(float width) { this.width = width; }
+    public void setHeight(float height) { this.height = height; }
 }

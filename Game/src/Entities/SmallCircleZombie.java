@@ -1,12 +1,9 @@
 package Entities;
 
 import Engine.Entity;
-import Engine.Input;
-import Engine.Updater;
 import Engine.Visual;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 /**
  * Created by evan on 4/29/2018.
@@ -18,7 +15,7 @@ public class SmallCircleZombie extends Entity
     public void start()
     {
         visual.setTint(Color.green);
-        visual.setRenderType(Visual.RenderType.EllipseBorder);
+        visual.setRenderType(Visual.RenderType.Ellipse);
 
         transform.setSize(16, 16);
         transform.setPos(transform.getX(), -64 + transform.getHeight() / 2);

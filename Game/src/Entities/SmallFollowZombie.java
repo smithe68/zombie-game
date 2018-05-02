@@ -3,7 +3,6 @@ package Entities;
 import Engine.*;
 
 import java.awt.*;
-import java.util.Random;
 
 /**
  * Created by evan on 4/29/2018.
@@ -16,10 +15,20 @@ public class SmallFollowZombie extends Entity
 
     public void start()
     {
-        visual.setRenderType(Visual.RenderType.EllipseBorder);
+        visual.setRenderType(Visual.RenderType.Ellipse);
         visual.setTint(Color.red);
 
+        physics.setHasCollision(true);
+
         hero = (Hero)SceneManager.getEntity("Hero");
+
+        physics.setCollisionEvent(e ->
+        {
+            if(e.tag.equals("Hero"))
+            {
+                hero.takeDamage(1f * Updater.deltaTime);
+            }
+        });
     }
 
     public void update()

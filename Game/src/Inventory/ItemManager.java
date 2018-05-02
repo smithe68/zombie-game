@@ -18,10 +18,11 @@ public class ItemManager {
         return false;
 
     }
-    public boolean remove(String ID){
+
+    public boolean remove(int ID){
         for(int i=0;i<inventory.length;i++){
             Items item =  inventory[i];
-            if (ID .equals(item.getID())){
+            if (ID==item.getID()){
                 inventory[i]=null;
                 numberOfEntries--;
                 return true;
@@ -31,5 +32,13 @@ public class ItemManager {
 
     }
 
+    public Items lookup(int ID){
+        for(int i=0;i<inventory.length;i++) {
+            if (ID == inventory[i].getID()){
+                return inventory[i];
+            }
+        }
+        return null;
 
+    }
 }

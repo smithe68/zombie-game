@@ -27,6 +27,7 @@ public class Input implements KeyListener
     @Override
     public void keyPressed(KeyEvent e) {
         currentKeys[e.getKeyCode()] = true;
+
     }
 
     @Override

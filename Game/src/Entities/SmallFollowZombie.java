@@ -2,6 +2,7 @@ package Entities;
 
 import Engine.*;
 import Engine.Components.Visual;
+import Engine.Internal.Renderer;
 import Engine.Internal.Updater;
 
 import java.awt.*;
@@ -17,7 +18,8 @@ public class SmallFollowZombie extends Entity
 
     public void start()
     {
-        visual.setRenderType(Visual.RenderType.Ellipse);
+        visual.setRenderType(Visual.RenderType.Image);
+        visual.setSprite(Renderer.getImage("ZombieSmall.png"));
         visual.setTint(Color.red);
 
         physics.setHasCollision(true);

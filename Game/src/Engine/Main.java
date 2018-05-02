@@ -14,10 +14,17 @@ public class Main
         // Create a Window
         Dimension windowSize = new Dimension(1280, 720);
         Window window = new Window("Zombie Game", windowSize);
-        window.canvas.addKeyListener(new Input());
 
         // Initialize Engine Components
         Renderer.initialize(window.canvas, 256, 60);
+
+        // Intialize Input
+        Input input = new Input();
+        window.canvas.addKeyListener(input);
+        window.canvas.addMouseMotionListener(input);
+        window.canvas.addMouseListener(input);
+        Input.initialize();
+
         SceneManager.initialize();
         Updater.initialize();
     }

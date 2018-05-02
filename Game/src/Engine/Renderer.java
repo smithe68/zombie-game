@@ -121,6 +121,10 @@ public class Renderer
     }
 
     public static Dimension getResolution() {
+        return new Dimension(canvas.getWidth(), canvas.getHeight());
+    }
+
+    public static Dimension getScaledResolution() {
         return new Dimension(size.width, size.height);
     }
 

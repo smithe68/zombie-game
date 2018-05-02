@@ -23,13 +23,21 @@ public class Hero extends Entity
         Camera.x = Mafs.lerp(Camera.x, transform.getX(), Updater.deltaTime);
         Camera.y = Mafs.lerp(Camera.y, transform.getY(), Updater.deltaTime);
 
-        if(Input.getKey(KeyEvent.VK_D)) { physics.setVelX(moveSpeed * Updater.deltaTime); }
-        if(Input.getKey(KeyEvent.VK_A)) { physics.setVelX(-moveSpeed * Updater.deltaTime); }
-        if(Input.getKey(KeyEvent.VK_W)) { physics.setVelY(moveSpeed * Updater.deltaTime); }
-        if(Input.getKey(KeyEvent.VK_S)) { physics.setVelY(-moveSpeed * Updater.deltaTime); }
+        float hori = Input.getInputAxis("Horizontal");
+        float vert = Input.getInputAxis("Vertical");
+
+        physics.setVelocity(hori * moveSpeed * Updater.deltaTime,
+                vert * moveSpeed * Updater.deltaTime);
 
         if(Input.getKeyDown(KeyEvent.VK_SPACE)) {
             SceneManager.createEntity(new Bullet());
+        }
+
+        float mouseX = Input.getRelativeMouseX();
+        float mouseY = Input.getRelativeMouseY();
+
+        if((physics.getCollider().contains(mouseX, mouseY)) && Input.getMouseButton(1)) {
+            visual.setRenderType(Visual.RenderType.Rectangle);
         }
     }
 }

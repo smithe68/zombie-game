@@ -19,7 +19,7 @@ public final class Visual
     public Visual(Transform transform)
     {
         this.transform = transform;
-        screenResolution = Renderer.getResolution();
+        screenResolution = Renderer.getScaledResolution();
         affine = new AffineTransform();
     }
 

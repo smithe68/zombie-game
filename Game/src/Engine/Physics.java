@@ -46,7 +46,7 @@ public final class Physics
         }
     }
 
-    private Rectangle getCollider()
+    public Rectangle getCollider()
     {
         return new Rectangle((int)transform.getX(), (int)transform.getY(),
                 transform.getWidth(), transform.getHeight());

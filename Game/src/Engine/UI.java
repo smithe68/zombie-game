@@ -1,5 +1,7 @@
 package Engine;
 
+import Engine.Components.Visual;
+
 public class UI extends Entity
 {
     public UI()

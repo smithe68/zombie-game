@@ -1,6 +1,11 @@
 package Entities;
 
 import Engine.*;
+import Engine.Components.Visual;
+import Engine.Internal.Input;
+import Engine.Internal.Renderer;
+import Engine.Internal.Updater;
+import Engine.Utility.Mafs;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

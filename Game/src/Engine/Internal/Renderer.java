@@ -1,6 +1,6 @@
-package Engine;
+package Engine.Internal;
 
-import Entities.Hero;
+import Engine.SceneManager;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

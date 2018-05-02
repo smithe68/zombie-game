@@ -1,9 +1,8 @@
 package Entities;
 
 import Engine.Entity;
-import Engine.Renderer;
-import Engine.Updater;
-import Engine.Visual;
+import Engine.Internal.Updater;
+import Engine.Components.Visual;
 
 import java.awt.*;
 

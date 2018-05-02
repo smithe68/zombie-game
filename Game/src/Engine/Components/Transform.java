@@ -1,4 +1,4 @@
-package Engine;
+package Engine.Components;
 
 public final class Transform
 {

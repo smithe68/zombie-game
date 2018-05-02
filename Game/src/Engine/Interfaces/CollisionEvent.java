@@ -1,4 +1,6 @@
-package Engine;
+package Engine.Interfaces;
+
+import Engine.Entity;
 
 public interface CollisionEvent
 {

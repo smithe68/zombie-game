@@ -10,24 +10,9 @@ public class Zombie extends Entity {
 
     private Visual.RenderType renderType = Visual.RenderType.Rectangle;
     private int angle;
-
-    public void start()
-    {
-        visual.setRenderType(renderType);
-        visual.setTint(Color.blue);
-    }
-
     private float movement = 0.3f*Updater.deltaTime;
 
-    public void update()
-    {
-        angle += 1;
-        if(angle > 360) { angle = 0; }
 
-        physics.setVelX((float)Math.cos(Math.toRadians(angle)));
-        physics.setVelY((float)Math.sin(Math.toRadians(angle)));
-
-    }
     public Zombie(ZombieType type){
         switch (type) {
 
@@ -42,6 +27,23 @@ public class Zombie extends Entity {
 
                 break;
         }
+    }
+    public void start()
+    {
+        visual.setRenderType(renderType);
+        visual.setTint(Color.blue);
+    }
+
+
+
+    public void update()
+    {
+        angle += 1;
+        if(angle > 360) { angle = 0; }
+
+        physics.setVelX((float)Math.cos(Math.toRadians(angle)));
+        physics.setVelY((float)Math.sin(Math.toRadians(angle)));
+
     }
     public enum ZombieType
     {

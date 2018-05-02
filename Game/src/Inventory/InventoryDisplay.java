@@ -1,9 +1,10 @@
 package Inventory;
 // ayy
-import Engine.Mafs;
+import Engine.Components.Visual;
+
 import Engine.SceneManager;
 import Engine.UI;
-import Engine.Visual;
+
 
 import java.awt.*;
 

@@ -52,7 +52,6 @@ public class Zombie extends Entity {
     {
         visual.setTint(color);
         visual.setRenderType(renderType);
-
         transform.setSize(width, heigh);
         transform.setPos(transform.getX(), -64 + transform.getHeight() / 2);
 
@@ -78,14 +77,13 @@ public class Zombie extends Entity {
         angle += 1;
         if(angle > 360) { angle = 0; }
         if (isFollow){
-        if(hero != null)
-        {
-            var dirX = hero.transform.getX() - transform.getX();
-            var dirY = hero.transform.getY() - transform.getY();
+            if(hero != null) {
+                var dirX = hero.transform.getX() - transform.getX();
+                var dirY = hero.transform.getY() - transform.getY();
 
-            var normal = Math.sqrt(dirX * dirX + dirY * dirY);
+                 var normal = Math.sqrt(dirX * dirX + dirY * dirY);
 
-            if(normal > 0)
+                 if(normal > 0)
             {
                 float moveX = (float)(dirX / normal) * Updater.deltaTime;
                 float moveY = (float)(dirY / normal) * Updater.deltaTime;

@@ -1,6 +1,7 @@
 package Engine;
 
 import Entities.*;
+import Inventory.InventoryDisplay;
 
 import java.awt.*;
 import java.util.*;
@@ -16,6 +17,7 @@ public class SceneManager
         SceneManager.createEntity(new Tile());
 
         SceneManager.createEntity(new Hero());
+        SceneManager.createEntity(new InventoryDisplay());
 
         var z = SceneManager.createEntity(new SmallFollowZombie());
         z.transform.setPos(100, 0);

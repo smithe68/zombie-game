@@ -21,6 +21,7 @@ public class Hero extends Entity
         physics.setHasCollision(true);
 
         healthBar = (ProgressBar)SceneManager.createEntity(new ProgressBar());
+
         setupHealthBar();
     }
 

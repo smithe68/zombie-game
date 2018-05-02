@@ -1,5 +1,5 @@
 package Entities;
-
+//
 import Engine.Components.Visual;
 import Engine.Entity;
 import Engine.Internal.Updater;

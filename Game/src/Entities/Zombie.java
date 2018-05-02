@@ -18,11 +18,14 @@ public class Zombie extends Entity {
 
     private float xMov;
     private float yMov;
+    private float speed = 0.5f;
 
     private int width;
     private int heigh;
 
     private Hero hero;
+
+    private boolean isFollow= false;
 
 
     public Zombie(ZombieType type){
@@ -41,6 +44,7 @@ public class Zombie extends Entity {
 
                 visual.setSprite(Renderer.getImage("ZombieSmall.png"));
                 color = Color.red;
+                isFollow = true;
                 break;
         }
     }
@@ -48,13 +52,16 @@ public class Zombie extends Entity {
     {
         visual.setTint(color);
         visual.setRenderType(renderType);
+
         transform.setSize(width, heigh);
         transform.setPos(transform.getX(), -64 + transform.getHeight() / 2);
 
+
+
+        hero = (Hero)SceneManager.getEntity("Hero")
+        ;
+
         physics.setHasCollision(true);
-
-        hero = (Hero)SceneManager.getEntity("Hero");
-
         physics.setCollisionEvent(e ->
         {
             if(e.tag.equals("Hero"))
@@ -70,6 +77,25 @@ public class Zombie extends Entity {
     {
         angle += 1;
         if(angle > 360) { angle = 0; }
+        if (isFollow){
+        if(hero != null)
+        {
+            var dirX = hero.transform.getX() - transform.getX();
+            var dirY = hero.transform.getY() - transform.getY();
+
+            var normal = Math.sqrt(dirX * dirX + dirY * dirY);
+
+            if(normal > 0)
+            {
+                float moveX = (float)(dirX / normal) * Updater.deltaTime;
+                float moveY = (float)(dirY / normal) * Updater.deltaTime;
+
+                physics.setVelocity(moveX * speed, moveY * speed);
+            }
+        }
+
+    }
+
 
         physics.setVelX(xMov);
         physics.setVelY(yMov);

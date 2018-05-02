@@ -1,4 +1,4 @@
-package Engine;
+package Engine.Interfaces;
 
 public interface Action
 {

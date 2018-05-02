@@ -1,7 +1,7 @@
 package Entities;
 
 import Engine.Entity;
-import Engine.Visual;
+import Engine.Components.Visual;
 
 import java.awt.*;
 

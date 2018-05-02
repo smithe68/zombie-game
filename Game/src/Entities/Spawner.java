@@ -2,9 +2,7 @@ package Entities;
 
 import Engine.Entity;
 import Engine.SceneManager;
-import Engine.Visual;
-
-import java.awt.*;
+import Engine.Components.Visual;
 
 /**
  * Created by evan on 4/29/2018.

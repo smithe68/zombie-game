@@ -1,4 +1,6 @@
-package Engine;
+package Engine.Internal;
+
+import Engine.SceneManager;
 
 import java.awt.*;
 

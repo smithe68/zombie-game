@@ -1,4 +1,4 @@
-package Engine;
+package Engine.Internal;
 
 import java.awt.*;
 import java.awt.event.*;

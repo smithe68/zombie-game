@@ -1,4 +1,6 @@
-package Engine;
+package Engine.Internal;
+
+import Engine.SceneManager;
 
 public class Updater
 {

@@ -7,9 +7,9 @@ import java.util.*;
 
 public class SceneManager
 {
-    static LinkedList<Entity> entities;
+    public static LinkedList<Entity> entities;
 
-    static void initialize()
+    public static void initialize()
     {
         entities = new LinkedList<>();
 
@@ -21,7 +21,7 @@ public class SceneManager
         z.transform.setPos(100, 0);
     }
 
-    static void updateEntities()
+    public static void updateEntities()
     {
         for(int i = 0; i < entities.size(); i++)
         {
@@ -30,7 +30,7 @@ public class SceneManager
         }
     }
 
-    static void renderEntities(Graphics2D g)
+    public static void renderEntities(Graphics2D g)
     {
         for(int i = 0; i < entities.size(); i++)
         {

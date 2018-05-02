@@ -1,4 +1,8 @@
-package Engine;
+package Engine.Components;
+
+import Engine.Camera;
+import Engine.Interfaces.RenderEvent;
+import Engine.Internal.Renderer;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -29,7 +33,7 @@ public final class Visual
 
     private RenderEvent renderEvent;
 
-    Visual(Transform transform)
+    public Visual(Transform transform)
     {
         this.transform = transform;
         screenResolution = Renderer.getScaledResolution();
@@ -53,7 +57,7 @@ public final class Visual
         BOTTOM_RIGHT
     }
 
-    void render(Graphics2D g)
+    public void render(Graphics2D g)
     {
         calculateRenderPos();
 

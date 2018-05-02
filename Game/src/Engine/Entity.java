@@ -1,5 +1,9 @@
 package Engine;
 
+import Engine.Components.Physics;
+import Engine.Components.Transform;
+import Engine.Components.Visual;
+
 public class Entity implements Comparable<Entity>
 {
     public String tag;

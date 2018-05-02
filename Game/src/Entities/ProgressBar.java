@@ -1,6 +1,6 @@
 package Entities;
 
-import Engine.Mafs;
+import Engine.Utility.Mafs;
 import Engine.SceneManager;
 import Engine.UI;
 

@@ -1,4 +1,8 @@
-package Engine;
+package Engine.Components;
+
+import Engine.Entity;
+import Engine.Interfaces.CollisionEvent;
+import Engine.SceneManager;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;

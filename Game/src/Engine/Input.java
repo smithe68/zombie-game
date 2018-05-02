@@ -70,9 +70,6 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener
     }
 
     @Override
-    public void keyTyped(KeyEvent e) { }
-
-    @Override
     public void keyPressed(KeyEvent e)
     {
         holdKeys.put(e.getKeyCode(), true);
@@ -89,15 +86,12 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener
         pressKeys.remove(e.getKeyCode());
     }
 
-    @Override
-    public void mouseMoved(MouseEvent e)
-    {
-        mouseX = (e.getX() / (screenRes.width / scaledRes.width));
-        mouseY = (e.getY() / (screenRes.height / scaledRes.height));
-    }
-
     public static float getMouseX() { return mouseX; }
     public static float getMouseY() { return mouseY; }
+
+    public static boolean getMouseButton(int button) {
+        return mouseButtons[button];
+    }
 
     public static float getRelativeMouseX() {
         return mouseX - ((screenRes.width / (screenRes.width / scaledRes.width)) / 2);
@@ -108,18 +102,23 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-        mouseButtons[e.getButton()] = true;
+    public void mouseMoved(MouseEvent e)
+    {
+        mouseX = (e.getX() / (screenRes.width / scaledRes.width));
+        mouseY = (e.getY() / (screenRes.height / scaledRes.height));
     }
 
-    public static boolean getMouseButton(int button) {
-        return mouseButtons[button];
+    @Override
+    public void mousePressed(MouseEvent e) {
+        mouseButtons[e.getButton()] = true;
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         mouseButtons[e.getButton()] = false;
     }
+
+    //<editor-fold desc="> Unused Implementation">
 
     @Override
     public void mouseClicked(MouseEvent e) { }
@@ -132,6 +131,11 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener
 
     @Override
     public void mouseDragged(MouseEvent e) { }
+
+    @Override
+    public void keyTyped(KeyEvent e) { }
+
+    //</editor-fold>
 }
 
 class KeyContainer

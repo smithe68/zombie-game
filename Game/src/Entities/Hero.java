@@ -12,7 +12,7 @@ public class Hero extends Entity
     public void start()
     {
         visual.setRenderType(Visual.RenderType.Image);
-        visual.setSprite(Renderer.getImage("Smiley.png"));
+        visual.setSprite(Renderer.getImage("Hero.png"));
         visual.setLayer(1);
 
         physics.setHasCollision(true);
@@ -36,8 +36,6 @@ public class Hero extends Entity
         float mouseX = Input.getRelativeMouseX();
         float mouseY = Input.getRelativeMouseY();
 
-        if((physics.getCollider().contains(mouseX, mouseY)) && Input.getMouseButton(1)) {
-            visual.setRenderType(Visual.RenderType.Rectangle);
-        }
+        transform.setRot((float)Math.toDegrees(Math.atan2(mouseY, mouseX)));
     }
 }

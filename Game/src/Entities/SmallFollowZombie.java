@@ -10,9 +10,9 @@ import java.util.Random;
  */
 public class SmallFollowZombie extends Entity
 {
+    private float speed = 0.5f;
+
     private Hero hero;
-    private Random random = new Random();
-    private int randomInt;
 
     public void start()
     {
@@ -22,11 +22,22 @@ public class SmallFollowZombie extends Entity
         hero = (Hero)SceneManager.getEntity("Hero");
     }
 
-
     public void update()
     {
-        randomInt = random.nextInt(10-1)+1;
-        transform.setX(Mafs.lerp(transform.getX(), hero.transform.getX(), Updater.deltaTime * 0.000995f*randomInt));
-        transform.setY(Mafs.lerp(transform.getY(), hero.transform.getY(), Updater.deltaTime * 0.000995f*randomInt));
+        if(hero != null)
+        {
+            var dirX = hero.transform.getX() - transform.getX();
+            var dirY = hero.transform.getY() - transform.getY();
+
+            var normal = Math.sqrt(dirX * dirX + dirY * dirY);
+
+            if(normal > 0)
+            {
+                float moveX = (float)(dirX / normal) * Updater.deltaTime;
+                float moveY = (float)(dirY / normal) * Updater.deltaTime;
+
+                physics.setVelocity(moveX * speed, moveY * speed);
+            }
+        }
     }
 }

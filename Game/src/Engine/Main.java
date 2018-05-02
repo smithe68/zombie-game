@@ -16,7 +16,7 @@ public class Main
         Window window = new Window("Zombie Game", windowSize);
 
         // Initialize Engine Components
-        Renderer.initialize(window.canvas, 256, 60);
+        Renderer.initialize(window.canvas, 384, 60);
 
         // Intialize Input
         Input input = new Input();

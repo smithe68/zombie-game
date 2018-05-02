@@ -9,14 +9,12 @@ public class SceneManager
 {
     static LinkedList<Entity> entities;
 
-    private static Queue<Entity> spawnQueue;
-
     static void initialize()
     {
         entities = new LinkedList<>();
-        spawnQueue = new LinkedList<>();
 
         SceneManager.createEntity(new Hero());
+        SceneManager.createEntity(new SmallFollowZombie());
         SceneManager.createEntity(new Tile());
     }
 
@@ -26,12 +24,6 @@ public class SceneManager
         {
             entities.get(i).update();
             entities.get(i).physics.update();
-        }
-
-        for(int i = 0; i < spawnQueue.size(); i++)
-        {
-            entities.add(spawnQueue.remove());
-            Collections.sort(entities);
         }
     }
 
@@ -44,25 +36,20 @@ public class SceneManager
 
     public static Entity createEntity(Entity e)
     {
-        spawnQueue.add(e);
+        entities.add(e);
         return e;
     }
 
     public static Entity getEntity(String tag)
     {
-        try
+        for(int i = 0; i < entities.size(); i++)
         {
-            for(int i = 0; i < entities.size(); i++)
-            {
-                if(entities.get(i).tag.equals(tag)) {
-                    return entities.get(i);
-                }
+            if(entities.get(i).tag.equals(tag)) {
+                return entities.get(i);
             }
         }
-        catch(NullPointerException e) {
-            System.err.println("Entity [" + tag + "] not Found!");
-        }
 
+        System.err.println("Entity [" + tag + "] not Found!");
         return null;
     }
 

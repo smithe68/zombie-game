@@ -8,13 +8,14 @@ public class Items {
     private String itemName;
     private String itemType;
     private int ID;
-    private String itemImage;
+    private BufferedImage itemImage;
 
-    public Items(String itemName, int ID, String itemType, String itemImage){
+    public Items(String itemName, int ID, String itemType,BufferedImage itemImage){
         itemName = this.itemName;
         ID = this.ID;
         itemType = this.itemType;
         itemImage = itemImage;
+
 
     }
 
@@ -42,11 +43,11 @@ public class Items {
         this.ID = ID;
     }
 
-   /* public BufferedImage getItemImage() {
+    public BufferedImage getItemImage() {
         return itemImage;
     }
 
     public void setItemImage(BufferedImage itemImage) {
         this.itemImage = itemImage;
-    }*/
+    }
 }

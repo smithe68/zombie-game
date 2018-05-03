@@ -22,7 +22,7 @@ public class SceneManager
         SceneManager.createEntity(new InventoryDisplay());
 
         var z =  (Zombie)SceneManager.createEntity((new Zombie()));
-        z.setType(Zombie.ZombieType.Circle);
+        z.setType(Zombie.ZombieType.Follow);
         z.transform.setPos(100, 0);
     }
 

@@ -15,8 +15,7 @@ public class Zombie extends Entity
 
     public enum ZombieType
     {
-        Follow,
-        Circle
+        Follow
     }
 
     public void start()
@@ -44,20 +43,7 @@ public class Zombie extends Entity
             case Follow:
                 followHero();
                 break;
-
-            case Circle:
-                patrolCircle();
-                break;
         }
-    }
-
-    private void patrolCircle()
-    {
-        angle += 1;
-        if(angle > 360) { angle = 0; }
-
-        physics.setVelocity((float)Math.cos(Math.toRadians(angle)),
-                (float)Math.sin(Math.toRadians(angle)));
     }
 
     private void followHero()

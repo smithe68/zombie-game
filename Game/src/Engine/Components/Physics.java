@@ -43,7 +43,8 @@ public final class Physics
             if(!entity.physics.hasCollision | entity.physics == this) { continue; }
             var rect = entity.physics.getCollider();
 
-            if(getCollider().contains(rect)) {
+            if(getCollider().contains(rect))
+            {
                 if(collisionEvent != null) { collisionEvent.Invoke(entity); }
             }
         }

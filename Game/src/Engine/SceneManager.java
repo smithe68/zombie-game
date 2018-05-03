@@ -16,11 +16,13 @@ public class SceneManager
 
         SceneManager.createEntity(new Tile());
 
-        SceneManager.createEntity(new Hero());
+        var h = SceneManager.createEntity(new Hero());
+        h.transform.setPos(-100, 0);
 
         SceneManager.createEntity(new InventoryDisplay());
 
-        var z =  SceneManager.createEntity((new Zombie(Zombie.ZombieType.Circle)));;
+        var z =  (Zombie)SceneManager.createEntity((new Zombie()));
+        z.setType(Zombie.ZombieType.Circle);
         z.transform.setPos(100, 0);
     }
 

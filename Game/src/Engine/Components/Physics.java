@@ -37,9 +37,9 @@ public final class Physics
     {
         if(!hasCollision) { return; }
 
-        for(int i = 0; i < SceneManager.entities.size(); i++)
+        for(int i = 0; i < SceneManager.currentScene.entities.size(); i++)
         {
-            Entity entity = SceneManager.entities.get(i);
+            Entity entity = SceneManager.currentScene.entities.get(i);
             if(!entity.physics.hasCollision | entity.physics == this) { continue; }
             var rect = entity.physics.getCollider();
 

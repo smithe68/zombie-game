@@ -21,7 +21,7 @@ public class Updater
             {
                 long startTime = System.nanoTime();
 
-                if(SceneManager.entities != null) {
+                if(SceneManager.currentScene.entities != null) {
                     SceneManager.updateEntities();
                 }
 

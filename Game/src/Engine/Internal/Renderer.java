@@ -66,7 +66,7 @@ public class Renderer
                 g.setColor(Color.black);
                 g.fillRect(0, 0, size.width, size.height);
 
-                if(SceneManager.entities != null) {
+                if(SceneManager.currentScene != null) {
                     SceneManager.renderEntities(g);
                 }
 

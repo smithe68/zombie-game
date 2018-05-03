@@ -7,7 +7,7 @@ import Engine.SceneManager;
 
 public class Zombie extends Entity
 {
-    private ZombieType type;
+    private ZombieType type = ZombieType.Follow;
 
     private int angle;
     private float speed = 0.5f;

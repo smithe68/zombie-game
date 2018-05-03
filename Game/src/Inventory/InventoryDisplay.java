@@ -10,6 +10,7 @@ import java.awt.*;
 
 public class InventoryDisplay extends UI {
     private UI invetory;
+    private Items currentitem;
     public void start()
     {
         visual.setTint(Color.white);
@@ -18,18 +19,19 @@ public class InventoryDisplay extends UI {
         invetory = (UI)SceneManager.createEntity(new UI());
         invetory.visual.setLayer(11);
 
-
+        invetory.visual.setAnchor(Visual.Anchor.BOTTOM_RIGHT);
 
     }
 
     public void update()
     {
-
         invetory.visual.setAnchor(Visual.Anchor.BOTTOM_RIGHT);
+
+
         //invetory.transform.setPos(transform.getX(), transform.getY());
 
-        invetory.transform.setHeight(5);
-        invetory.transform.setWidth(5);
+        invetory.transform.setHeight(50);
+        invetory.transform.setWidth(50);
 
 
     }

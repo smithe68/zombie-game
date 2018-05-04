@@ -47,6 +47,8 @@ public class LevelReader
                         break;
                 }
             }
+
+            scanner.close();
         }
         catch(FileNotFoundException e) {
             System.err.println("Level [" + name + "] not Found");

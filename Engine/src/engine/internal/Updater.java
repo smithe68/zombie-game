@@ -3,34 +3,32 @@ package engine.internal;
 import engine.SceneManager;
 import engine.Time;
 
-public class Updater
+public class Updater extends Thread
 {
-    private static boolean isRunning;
+    private boolean isRunning;
 
-    public static void initialize()
+    public void run()
     {
         if(isRunning) { return; }
+        else { isRunning = true; }
 
-        Thread thread = new Thread(() ->
+        long lastTime = System.nanoTime();
+
+        while(isRunning)
         {
-            isRunning = true;
+            long startTime = System.nanoTime();
 
-            long lastTime = System.nanoTime();
+            SceneManager.update();
 
-            while(isRunning)
+            Time.deltaTime = (float)((startTime - lastTime) / 1E7);
+            lastTime = startTime;
+
+            try
             {
-                long startTime = System.nanoTime();
-
-                SceneManager.updateEntities();
-
-                System.out.println("HELLO");
-
-                Time.deltaTime = (float)((startTime - lastTime) / 1E7);
-                lastTime = startTime;
+                long optimalTime = (long) 1E9 / 120;
+                Thread.sleep((lastTime - System.nanoTime() + optimalTime) / (long)1E6);
             }
-        });
-
-        thread.setName("Updater Thread");
-        thread.start();
+            catch (InterruptedException e) { e.printStackTrace(); }
+        }
     }
 }

@@ -19,7 +19,8 @@ public class Engine
 
         // Initialize engine components
         Renderer.initialize(window, 384, 60);
-        Updater.initialize();
+        Updater updater = new Updater();
+        updater.start();
 
         Input.initialize(window);
     }

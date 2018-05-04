@@ -7,22 +7,12 @@ public class SceneManager
 {
     public static Scene currentScene = new Scene();
 
-    public static void updateEntities()
-    {
-        for(int i = 0; i < currentScene.entities.size(); i++)
-        {
-            currentScene.entities.get(i).update();
-            currentScene.entities.get(i).physics.update();
-        }
+    public static void update() {
+        currentScene.update();
     }
 
-    public static void renderEntities(Graphics2D g)
-    {
-        for(int i = 0; i < currentScene.entities.size(); i++)
-        {
-            currentScene.entities.get(i).visual.render(g);
-            currentScene.entities.get(i).fixedUpdate();
-        }
+    public static void render(Graphics2D g) {
+        currentScene.render(g);
     }
 
     public static Entity createEntity(Entity e)
@@ -42,6 +32,7 @@ public class SceneManager
         }
 
         System.err.println("Entity [" + tag + "] not Found!");
+
         return null;
     }
 

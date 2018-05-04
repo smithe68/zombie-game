@@ -1,7 +1,6 @@
 package entities;
 
 import engine.Entity;
-import engine.SceneManager;
 import engine.components.Visual;
 
 /**
@@ -19,12 +18,6 @@ public class Spawner extends Entity
 
     public void update()
     {
-        timer++;
-        if (timer==9000000){
-            SceneManager.createEntity(new SmallFollowZombie());
-            timer =0;
-        }
-
 
     }
 

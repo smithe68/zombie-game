@@ -1,33 +1,70 @@
 package engine;
 
-import engine.components.Physics;
 import engine.components.Transform;
-import engine.components.Visual;
 
-public class Entity implements Comparable<Entity>
+import java.awt.Graphics2D;
+import java.util.LinkedList;
+import java.util.List;
+
+public final class Entity implements Comparable<Entity>
 {
-    public String tag;
+    public int layer;
+    public String name;
     public Transform transform;
-    public Physics physics;
-    public Visual visual;
 
-    public Entity()
+    private List<Component> components;
+
+    public Entity(String name)
     {
-        tag = getClass().getSimpleName();
-
-        transform = new Transform();
-        physics = new Physics(transform);
-        visual = new Visual(transform);
-
-        start();
+        this.name = name;
+        components = new LinkedList<>();
+        transform = new Transform(this);
+        components.add(transform);
     }
 
-    public void start() {}
-    public void fixedUpdate() {}
-    public void update() {}
+    void update()
+    {
+        for(int i = 0; i < components.size(); i++) {
+            components.get(i).update();
+        }
+    }
+
+    void render(Graphics2D g)
+    {
+        for(int i = 0; i < components.size(); i++) {
+            components.get(i).render(g);
+        }
+    }
+
+    public Component addComponent(Component component)
+    {
+        components.add(component);
+        return component;
+    }
+
+    public <T extends Component> Component getComponent(Class<T> clazz)
+    {
+        for(int i = 0; i < components.size(); i++)
+        {
+            if(components.get(i).getClass().isAssignableFrom(clazz)) {
+                return components.get(i);
+            }
+        }
+
+        return null;
+    }
+
+    public void removeComponent(Component component) {
+        components.remove(component);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
 
     @Override
     public int compareTo(Entity o) {
-        return visual.getLayer() - o.visual.getLayer();
+        return layer - o.layer;
     }
 }

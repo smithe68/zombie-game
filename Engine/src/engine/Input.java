@@ -1,7 +1,7 @@
 package engine;
 
-import engine.internal.Renderer;
-import engine.internal.Window;
+import engine.rendering.Renderer;
+import engine.rendering.Window;
 
 import java.awt.Dimension;
 import java.awt.event.*;
@@ -145,16 +145,4 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener
     public void keyTyped(KeyEvent e) { }
 
     //</editor-fold>
-}
-
-class KeyContainer
-{
-    int posKey;
-    int negKey;
-
-    KeyContainer(int posKey, int negKey)
-    {
-        this.posKey = posKey;
-        this.negKey = negKey;
-    }
 }

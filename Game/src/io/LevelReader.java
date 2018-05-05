@@ -1,11 +1,15 @@
 package io;
 
+import engine.Component;
+import engine.Entity;
 import engine.SceneManager;
-import entities.*;
+import engine.components.Camera;
 
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
 public class LevelReader
@@ -22,29 +26,44 @@ public class LevelReader
                 String line = scanner.nextLine();
 
                 String[] object = line.split(":");
-                String[] pos = object[1].split(",");
+                String[] info = object[1].split(",");
 
                 String entityName = object[0];
 
-                float posX = Float.parseFloat(pos[0]);
-                float posY = Float.parseFloat(pos[1]);
+                float posX = Float.parseFloat(info[0]);
+                float posY = Float.parseFloat(info[1]);
 
-                switch(entityName)
+                float width = Float.parseFloat(info[2]);
+                float height = Float.parseFloat(info[3]);
+                int layer = Integer.parseInt(info[4]);
+
+                var ent = SceneManager.createEntity(entityName);
+
+                ent.transform.position.set(posX, posY);
+                ent.transform.setSize(width, height);
+                ent.layer = layer;
+
+                if(object.length == 2) { continue; }
+
+                for(int i = 2; i < object.length; i++)
                 {
-                    case "Hero":
-                        var hero = SceneManager.createEntity(new Hero());
-                        hero.transform.setPos(posX, posY);
-                        break;
+                    if(object[i].equals("Camera"))
+                    {
+                        ent.addComponent(new Camera(ent));
+                        continue;
+                    }
 
-                    case "Zombie":
-                        var zombie = SceneManager.createEntity(new Zombie());
-                        zombie.transform.setPos(posX, posY);
-                        break;
-
-                    case "Tile":
-                        var tile = SceneManager.createEntity(new Tile());
-                        tile.transform.setPos(posX, posY);
-                        break;
+                    try
+                    {
+                        Class<?> clazz = Class.forName("components." + object[i]);
+                        Constructor<?> ctor = clazz.getConstructor(Entity.class);
+                        ent.addComponent((Component)ctor.newInstance(ent));
+                    }
+                    catch(ClassNotFoundException c) {
+                        System.err.println("Component [" + object[i] + "] does not exist!");
+                    }
+                    catch(NoSuchMethodException | IllegalAccessException |
+                            InstantiationException | InvocationTargetException n) { n.printStackTrace(); }
                 }
             }
 

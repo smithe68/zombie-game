@@ -1,7 +1,8 @@
-Hero:-100,0
-Zombie:100,0
-Tile:0,0
-Tile:-128,128
-Tile:128,128
-Tile:-128,-128
-Tile:128,-128
+Camera:0,0,0,0,0:Camera
+Player:-100,0,32,32,1:Player
+Zombie:100,0,32,32,0:Zombie
+Tile:0,0,128,128,-1:ShapeRenderer
+Tile:-128,128,128,128,-1:ShapeRenderer
+Tile:128,128,128,128,-1:ShapeRenderer
+Tile:-128,-128,128,128,-1:ShapeRenderer
+Tile:128,-128,128,128,-1:ShapeRenderer

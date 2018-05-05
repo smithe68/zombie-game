@@ -1,6 +1,6 @@
 package engine;
 
-import engine.internal.*;
+import engine.rendering.*;
 
 import java.awt.Dimension;
 

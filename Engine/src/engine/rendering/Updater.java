@@ -1,7 +1,7 @@
-package engine.internal;
+package engine.rendering;
 
 import engine.SceneManager;
-import engine.Time;
+import engine.utility.Time;
 
 public class Updater extends Thread
 {
@@ -20,13 +20,13 @@ public class Updater extends Thread
 
             SceneManager.update();
 
-            Time.deltaTime = (float)((startTime - lastTime) / 1E7);
+            Time.deltaTime = (float)((startTime - lastTime) / 1E8);
             lastTime = startTime;
 
             try
             {
                 long optimalTime = (long) 1E9 / 120;
-                Thread.sleep((lastTime - System.nanoTime() + optimalTime) / (long)1E6);
+                Thread.sleep(Math.abs((lastTime - System.nanoTime() + optimalTime) / (long)1E6));
             }
             catch (InterruptedException e) { e.printStackTrace(); }
         }

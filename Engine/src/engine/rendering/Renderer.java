@@ -1,4 +1,4 @@
-package engine.internal;
+package engine.rendering;
 
 import engine.SceneManager;
 

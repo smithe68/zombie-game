@@ -1,50 +1,40 @@
 package engine.components;
 
-public final class Transform
+import engine.Component;
+import engine.Entity;
+import engine.utility.Vector;
+
+/**
+ * Represents a Entity's Position, Rotation,
+ * Width, and Height relative to the World.
+ * (All Entity's must have this Component)
+ * @author Jakub
+ */
+public final class Transform extends Component
 {
-    private float x;
-    private float y;
+    public Vector position = new Vector();
 
-    private float rotation;
+    private float rotation = 0;
 
-    private float width = 32;
     private float height = 32;
+    private float width = 32;
 
-    public void setPos(float x, float y)
-    {
-        this.x = x;
-        this.y = y;
+    public Transform(Entity parent) {
+        super(parent);
     }
 
-    public void setX(float x)
-    {
-        this.x = x;
-    }
+    public void setRotation(float rot) { rotation = rot; }
+    public float getRotation() { return rotation; }
 
-    public void setY(float y)
-    {
-        this.y = y;
-    }
+    public void setWidth(float w) { width = w; }
+    public float getWidth() { return width; }
 
-    public float getX() { return x; }
-    public float getY() { return y; }
-
-    public void setRot(float rotation)
-    {
-        this.rotation = rotation;
-    }
-
-    public float getRot() { return rotation; }
+    public void setHeight(float h) { height = h; }
+    public float getHeight() { return height; }
 
     public void setSize(float width, float height)
     {
         this.width = width;
         this.height = height;
     }
-
-    public float getWidth() { return width; }
-    public float getHeight() { return height; }
-
-    public void setWidth(float width) { this.width = width; }
-    public void setHeight(float height) { this.height = height; }
 }

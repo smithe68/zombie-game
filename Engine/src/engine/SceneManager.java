@@ -1,11 +1,11 @@
 package engine;
 
-import java.awt.*;
-import java.util.*;
+import java.awt.Graphics2D;
+import java.util.Collections;
 
 public class SceneManager
 {
-    public static Scene currentScene = new Scene();
+    private static Scene currentScene = new Scene();
 
     public static void update() {
         currentScene.update();
@@ -15,23 +15,33 @@ public class SceneManager
         currentScene.render(g);
     }
 
-    public static Entity createEntity(Entity e)
-    {
-        currentScene.entities.add(e);
-        Collections.sort(currentScene.entities);
-        return e;
+    static Scene getCurrentScene() {
+        return currentScene;
     }
 
-    public static Entity getEntity(String tag)
+    public static void changeScene(Scene scene) {
+        currentScene = scene;
+    }
+
+    public static Entity createEntity(String name)
+    {
+        var entity = new Entity(name);
+        currentScene.entities.add(entity);
+        System.out.println("Spawned: " + entity.name);
+        Collections.sort(currentScene.entities);
+        return entity;
+    }
+
+    public static Entity getEntity(String name)
     {
         for(int i = 0; i < currentScene.entities.size(); i++)
         {
-            if(currentScene.entities.get(i).tag.equals(tag)) {
+            if(currentScene.entities.get(i).name.equals(name)) {
                 return currentScene.entities.get(i);
             }
         }
 
-        System.err.println("Entity [" + tag + "] not Found!");
+        System.err.println("Entity [" + name + "] not Found!");
 
         return null;
     }

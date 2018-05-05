@@ -1,10 +1,12 @@
 package components;
 
-import engine.*;
+import engine.Component;
+import engine.Entity;
+import engine.SceneManager;
 import engine.utility.Time;
 import engine.utility.Vector;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class Zombie extends Component
 {

@@ -3,7 +3,7 @@ package engine;
 import engine.rendering.Renderer;
 import engine.rendering.Window;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
 

@@ -4,7 +4,8 @@ import engine.Entity;
 import enums.Shapes;
 
 import java.awt.*;
-import java.awt.geom.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 public class ShapeRenderer extends EntityRenderer
 {

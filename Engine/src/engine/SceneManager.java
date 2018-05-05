@@ -1,6 +1,6 @@
 package engine;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.util.Collections;
 
 public class SceneManager

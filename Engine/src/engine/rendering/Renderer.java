@@ -2,13 +2,8 @@ package engine.rendering;
 
 import engine.SceneManager;
 
-import javax.imageio.ImageIO;
-import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Creates a Loop on a Separate CPU Thread where

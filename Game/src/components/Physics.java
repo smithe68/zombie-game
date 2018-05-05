@@ -1,6 +1,7 @@
 package components;
 
-import engine.*;
+import engine.Component;
+import engine.Entity;
 import engine.components.Transform;
 import engine.utility.Vector;
 

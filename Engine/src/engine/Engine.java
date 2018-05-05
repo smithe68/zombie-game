@@ -1,8 +1,10 @@
 package engine;
 
-import engine.rendering.*;
+import engine.rendering.Renderer;
+import engine.rendering.Updater;
+import engine.rendering.Window;
 
-import java.awt.Dimension;
+import java.awt.*;
 
 /**
  * This class is the starting point of the program

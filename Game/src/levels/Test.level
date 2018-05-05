@@ -1,6 +1,6 @@
 Camera:0,0,0,0,0:Camera
-Player:-100,0,32,32,1:Player
-Zombie:100,0,32,32,0:Zombie
+Player:-100,0,32,32,2:Player
+Zombie:100,0,32,32,1:Zombie
 Tile:0,0,128,128,-1:ShapeRenderer
 Tile:-128,128,128,128,-1:ShapeRenderer
 Tile:128,128,128,128,-1:ShapeRenderer

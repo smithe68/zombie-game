@@ -11,14 +11,15 @@ import java.awt.*;
 
 public class Player extends Component
 {
-    private ShapeRenderer shapeRenderer;
+    private SpriteRenderer spriteRenderer;
     private Physics physics;
 
     public Player(Entity parent)
     {
         super(parent);
-        shapeRenderer = (ShapeRenderer)parent.addComponent(new ShapeRenderer(parent));
-        shapeRenderer.setTint(Color.cyan);
+        spriteRenderer = (SpriteRenderer)parent.addComponent(new SpriteRenderer(parent));
+        spriteRenderer.setTint(Color.cyan);
+        spriteRenderer.setSprite("Hero.png");
         physics = (Physics)parent.addComponent(new Physics(parent));
         parent.layer = 1;
     }
@@ -31,7 +32,12 @@ public class Player extends Component
 
         physics.velocity.set(hori, vert);
 
-        Camera.setPosition(Vector.lerp(Camera.getPosition(), parent.transform.position,
+        Camera.setPosition(Vector.lerp(Camera.getPosition(), transform.position,
                 Time.deltaTime));
+
+        float mouseX = Input.getRelativeMouseX();
+        float mouseY = Input.getRelativeMouseY();
+
+        transform.setRotation((float)Math.toDegrees(Math.atan2(mouseY, mouseX)));
     }
 }

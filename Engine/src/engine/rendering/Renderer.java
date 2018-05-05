@@ -128,26 +128,5 @@ public class Renderer
         return new Dimension(size.width, size.height);
     }
 
-    public static BufferedImage getImage(String name)
-    {
-        var view = FileSystemView.getFileSystemView();
-        String docs = view.getDefaultDirectory().toString();
-        var path = new File(docs + "/Zombie Game/Game/src/resources/sprites/" + name);
-        if(path.mkdirs()) { System.out.println("Created Sprites Folder"); }
-
-        BufferedImage finalImage = null;
-        BufferedImage raw;
-
-        try
-        {
-            raw = ImageIO.read(path);
-            finalImage = gc.createCompatibleImage(raw.getWidth(), raw.getHeight(), raw.getTransparency());
-            finalImage.getGraphics().drawImage(raw, 0, 0, raw.getWidth(), raw.getHeight(), null);
-        }
-        catch(IOException e) {
-            System.err.println("Image [" + path + "] does not exist");
-        }
-
-        return finalImage;
-    }
+    public static GraphicsConfiguration getGC() { return gc; }
 }

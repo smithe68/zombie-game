@@ -16,24 +16,22 @@ public class ShapeRenderer extends EntityRenderer
     }
 
     @Override
-    protected void render(Graphics2D g)
+    protected void onRender(Graphics2D g)
     {
-        super.render(g);
-
         switch(shape)
         {
             case Rectangle:
                 if(isFilled) { g.fill(new Rectangle2D.Float(renderPosition.getX(), renderPosition.getY(),
-                        parent.transform.getWidth(), parent.transform.getHeight())); }
+                        transform.getWidth(), transform.getHeight())); }
                 else { g.draw(new Rectangle.Float(renderPosition.getX(), renderPosition.getY(),
-                        parent.transform.getWidth(), parent.transform.getHeight())); }
+                        transform.getWidth(), transform.getHeight())); }
                 break;
 
             case Ellipse:
                 if(isFilled) { g.fill(new Ellipse2D.Float(renderPosition.getX(), renderPosition.getY(),
-                        parent.transform.getWidth(), parent.transform.getHeight())); }
+                        transform.getWidth(), transform.getHeight())); }
                 else { g.draw(new Rectangle.Float(renderPosition.getX(), renderPosition.getY(),
-                        parent.transform.getWidth(), parent.transform.getHeight())); }
+                        transform.getWidth(), transform.getHeight())); }
                 break;
         }
     }

@@ -37,4 +37,12 @@ public final class Transform extends Component
         this.width = width;
         this.height = height;
     }
+
+    public void lookAt(Transform other)
+    {
+        if(other == null) { return; }
+        Vector dir = Vector.getDirection(position, other.position);
+        setRotation((float)Math.toDegrees(Math.atan2(-dir.getY(),
+                dir.getX())));
+    }
 }

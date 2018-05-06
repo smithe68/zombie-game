@@ -3,6 +3,7 @@ package engine.rendering;
 import engine.SceneManager;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.VolatileImage;
 
 /**
@@ -28,6 +29,7 @@ public class Renderer
     private static boolean isRunning;
 
     private static GraphicsConfiguration gc;
+    private static AffineTransform affine;
 
     public static void initialize(Window window, int resolution, int targetFPS)
     {
@@ -39,6 +41,7 @@ public class Renderer
 
         scaleResolution();
 
+        affine = new AffineTransform();
         targetTime = (int)1E9 / targetFPS;
 
         Thread thread = new Thread(() ->
@@ -58,6 +61,8 @@ public class Renderer
                 }
 
                 Graphics2D g = (Graphics2D)vImage.getGraphics();
+
+                g.transform(affine);
 
                 // Make the Screen Black
                 g.setColor(Color.black);

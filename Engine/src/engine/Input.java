@@ -98,8 +98,17 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener
     public static float getMouseX() { return mouseX; }
     public static float getMouseY() { return mouseY; }
 
-    public static boolean getMouseButton(int button) {
-        return mouseButtons[button];
+    public static boolean getMouseButton(int button)
+    {
+        boolean result = false;
+
+        if(mouseButtons[button])
+        {
+            result = true;
+            mouseButtons[button] = false;
+        }
+
+        return result;
     }
 
     public static float getRelativeMouseX() {

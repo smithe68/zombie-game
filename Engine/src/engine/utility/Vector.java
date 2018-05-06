@@ -87,6 +87,12 @@ public class Vector
         return new Vector(end.x - start.x, end.y - start.y);
     }
 
+    public static Vector rotToVector(float rotation)
+    {
+        return new Vector((float)Math.cos(Math.toRadians(rotation)),
+                -(float)Math.sin(Math.toRadians(rotation)));
+    }
+
     public static Vector lerp(Vector a, Vector b, float t) {
         return new Vector(Mafs.lerp(a.x, b.x, t), Mafs.lerp(a.y, b.y, t));
     }

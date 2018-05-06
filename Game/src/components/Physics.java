@@ -2,7 +2,6 @@ package components;
 
 import engine.Component;
 import engine.Entity;
-import engine.components.Transform;
 import engine.utility.Vector;
 
 import java.awt.geom.Rectangle2D;
@@ -18,22 +17,20 @@ public final class Physics extends Component
 {
     public Vector velocity = new Vector();
     private static List<Physics> physicsObjs = new LinkedList<>();
-    private Transform parentTransform;
 
     public Physics(Entity parent)
     {
         super(parent);
         physicsObjs.add(this);
-        this.parentTransform = parent.transform;
     }
 
     @Override
-    protected void update()
+    protected void update(float delta)
     {
         checkCollision();
 
-        parentTransform.position.set(parentTransform.position.getX() + velocity.getX(),
-                parentTransform.position.getY() + velocity.getY());
+        transform.position.set(transform.position.getX() + velocity.getX(),
+                transform.position.getY() + velocity.getY());
 
         velocity.set(0, 0);
     }
@@ -50,7 +47,7 @@ public final class Physics extends Component
 
     private Rectangle2D.Float getCollider()
     {
-        return new Rectangle2D.Float(parentTransform.position.getX(), parentTransform.position.getY(),
-                parentTransform.getWidth(), parentTransform.getHeight());
+        return new Rectangle2D.Float(transform.position.getX(), transform.position.getY(),
+                transform.getWidth(), transform.getHeight());
     }
 }

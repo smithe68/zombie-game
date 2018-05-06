@@ -21,5 +21,20 @@ public class Component
     }
 
     protected void render(Graphics2D g) {}
-    protected void update() {}
+    protected void update(float delta) {}
+
+    // Add Component Shortcut
+    protected Component addComponent(Component component) {
+        return parent.addComponent(component);
+    }
+
+    // Get Component Shortcut
+    public <T extends Component> Component getComponent(Class<T> clazz) {
+        return parent.getComponent(clazz);
+    }
+
+    // Remove Component Shortcut
+    public void removeComponent(Component component) {
+        parent.removeComponent(component);
+    }
 }

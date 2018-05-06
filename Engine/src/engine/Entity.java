@@ -22,10 +22,10 @@ public final class Entity implements Comparable<Entity>
         components.add(transform);
     }
 
-    void update()
+    void update(float delta)
     {
         for(int i = 0; i < components.size(); i++) {
-            components.get(i).update();
+            components.get(i).update(delta);
         }
     }
 

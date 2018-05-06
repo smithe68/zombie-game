@@ -7,8 +7,8 @@ public class SceneManager
 {
     private static Scene currentScene = new Scene();
 
-    public static void update() {
-        currentScene.update();
+    public static void update(float delta) {
+        currentScene.update(delta);
     }
 
     public static void render(Graphics2D g) {

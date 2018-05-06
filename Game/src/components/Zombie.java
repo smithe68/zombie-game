@@ -3,7 +3,6 @@ package components;
 import engine.Component;
 import engine.Entity;
 import engine.SceneManager;
-import engine.utility.Time;
 import engine.utility.Vector;
 
 import java.awt.*;
@@ -17,26 +16,31 @@ public class Zombie extends Component
     public Zombie(Entity parent)
     {
         super(parent);
-        spriteRenderer = (SpriteRenderer)parent.addComponent(new SpriteRenderer(parent));
+        spriteRenderer = addComponent(new SpriteRenderer(parent));
         spriteRenderer.setSprite("ZombieSmall.png");
         spriteRenderer.setTint(Color.red);
 
-        physics = (Physics)parent.addComponent(new Physics(parent));
+        physics = (Physics)addComponent(new Physics(parent));
         player = SceneManager.getEntity("Player");
     }
 
     @Override
-    protected void update()
+    protected void update(float delta)
     {
-        if(player != null)
-        {
-            var dir = Vector.getDirection(transform.position,
-                    player.transform.position);
-            dir.normalize();
+        followPlayer(delta);
+        transform.lookAt(player.transform);
+    }
 
-            dir.mul(Time.deltaTime, Time.deltaTime);
-            physics.velocity.set(dir);
-            spriteRenderer.lookAt(player.transform);
-        }
+    private void followPlayer(float delta)
+    {
+        if(player == null) { return; }
+
+        var dir = Vector.getDirection(transform.position,
+                player.transform.position);
+
+        dir.normalize();
+        dir.mul(delta, delta);
+
+        physics.velocity.set(dir);
     }
 }

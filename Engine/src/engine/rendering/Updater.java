@@ -1,7 +1,6 @@
 package engine.rendering;
 
 import engine.SceneManager;
-import engine.utility.Time;
 
 public class Updater extends Thread
 {
@@ -13,21 +12,18 @@ public class Updater extends Thread
         else { isRunning = true; }
 
         long lastTime = System.nanoTime();
+        long optimalTime = (long)1E9 / 60;
 
         while(isRunning)
         {
             long startTime = System.nanoTime();
-
-            SceneManager.update();
-
-            Time.deltaTime = (float)((startTime - lastTime) / 1E8);
+            long updateLength = startTime - lastTime;
             lastTime = startTime;
 
-            try
-            {
-                long optimalTime = (long) 1E9 / 120;
-                Thread.sleep(Math.abs((lastTime - System.nanoTime() + optimalTime) / (long)1E6));
-            }
+            float delta = updateLength / (float)optimalTime;
+            SceneManager.update(delta);
+
+            try { Thread.sleep((lastTime - System.nanoTime() + optimalTime) / (long)1E6); }
             catch (InterruptedException e) { e.printStackTrace(); }
         }
     }

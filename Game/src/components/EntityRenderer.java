@@ -7,23 +7,17 @@ import engine.components.Transform;
 import engine.utility.Vector;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 
 public class EntityRenderer extends Component
 {
     protected Vector renderPosition = new Vector();
 
     private Color tint = Color.white;
-    private AffineTransform affine;
 
-    public EntityRenderer(Entity parent)
-    {
-        super(parent);
-        affine = new AffineTransform();
-    }
+    public EntityRenderer(Entity parent) { super(parent); }
 
     @Override
-    protected void update()
+    protected void update(float delta)
     {
         renderPosition.setX(transform.position.getX() + (renderResolution.width / 2));
         renderPosition.setY(-transform.position.getY() + (renderResolution.height / 2));
@@ -35,10 +29,8 @@ public class EntityRenderer extends Component
     protected final void render(Graphics2D g)
     {
         setInternalRotation(g, transform.getRotation());
-
         g.setColor(tint);
         onRender(g);
-
         setInternalRotation(g, -transform.getRotation());
     }
 
@@ -46,15 +38,8 @@ public class EntityRenderer extends Component
 
     private void setInternalRotation(Graphics2D g, float rotation)
     {
-        g.transform(affine);
         g.rotate(Math.toRadians(rotation), renderPosition.getX() + transform.getWidth() / 2,
                 renderPosition.getY() + transform.getHeight() / 2);
-    }
-
-    public void lookAt(Transform other)
-    {
-        transform.setRotation((float)Math.toDegrees(Math.atan2(-other.position.getY(),
-                other.position.getX())));
     }
 
     public void setTint(Color tint) { this.tint = tint; }

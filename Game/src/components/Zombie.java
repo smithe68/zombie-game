@@ -21,6 +21,8 @@ public class Zombie extends Component
         spriteRenderer.setTint(Color.red);
 
         physics = (Physics)addComponent(new Physics(parent));
+        physics.colliderSize.set(16, 16);
+
         player = SceneManager.getEntity("Player");
     }
 

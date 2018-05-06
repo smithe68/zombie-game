@@ -49,6 +49,7 @@ public class SceneManager
     public static void destroyEntity(Entity e)
     {
         if(e == null) { return; }
+        e.cleanup();
         currentScene.entities.remove(e);
     }
 }

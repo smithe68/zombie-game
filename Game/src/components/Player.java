@@ -16,7 +16,9 @@ public class Player extends Component
         super(parent);
 
         spriteRenderer = (SpriteRenderer)addComponent(new SpriteRenderer(parent));
+
         physics = (Physics)addComponent(new Physics(parent));
+        physics.colliderSize.set(16, 16);
 
         spriteRenderer.setTint(Color.cyan);
         spriteRenderer.setSprite("Hero.png");

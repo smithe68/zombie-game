@@ -9,8 +9,11 @@ public class Component
 {
     protected Entity parent;
     protected Transform transform;
-    protected GraphicsConfiguration graphicsConfiguration;
-    protected Dimension renderResolution;
+
+    protected boolean debugActive = false;
+
+    protected static GraphicsConfiguration graphicsConfiguration;
+    protected static Dimension renderResolution;
 
     public Component(Entity parent)
     {
@@ -22,6 +25,7 @@ public class Component
 
     protected void render(Graphics2D g) {}
     protected void update(float delta) {}
+    protected void cleanup() {}
 
     // Add Component Shortcut
     protected Component addComponent(Component component) {
@@ -36,5 +40,9 @@ public class Component
     // Remove Component Shortcut
     public void removeComponent(Component component) {
         parent.removeComponent(component);
+    }
+
+    public void setDebugActive(boolean active) {
+        debugActive = active;
     }
 }

@@ -58,6 +58,13 @@ public final class Entity implements Comparable<Entity>
         components.remove(component);
     }
 
+    public void cleanup()
+    {
+        for(int i = 0; i < components.size(); i++) {
+            components.get(i).cleanup();
+        }
+    }
+
     @Override
     public String toString() {
         return getClass().getSimpleName();

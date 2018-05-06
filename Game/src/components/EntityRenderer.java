@@ -17,12 +17,8 @@ public class EntityRenderer extends Component
     public EntityRenderer(Entity parent) { super(parent); }
 
     @Override
-    protected void update(float delta)
-    {
-        renderPosition.setX(transform.position.getX() + (renderResolution.width / 2));
-        renderPosition.setY(-transform.position.getY() + (renderResolution.height / 2));
-        renderPosition.sub(transform.getWidth() / 2, transform.getHeight() / 2);
-        renderPosition.add(-Camera.getPosition().getX(), Camera.getPosition().getY());
+    protected void update(float delta) {
+        renderPosition = getRenderedPosition(transform);
     }
 
     @Override
@@ -44,4 +40,14 @@ public class EntityRenderer extends Component
 
     public void setTint(Color tint) { this.tint = tint; }
     public Color getTint() { return tint; }
+
+    public static Vector getRenderedPosition(Transform t)
+    {
+        Vector renderPos = new Vector();
+        renderPos.setX(t.position.getX() + (renderResolution.width / 2));
+        renderPos.setY(-t.position.getY() + (renderResolution.height / 2));
+        renderPos.sub(t.getWidth() / 2, t.getHeight() / 2);
+        renderPos.add(-Camera.getPosition().getX(), Camera.getPosition().getY());
+        return renderPos;
+    }
 }

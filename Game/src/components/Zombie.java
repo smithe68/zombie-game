@@ -16,7 +16,7 @@ public class Zombie extends Component
     public Zombie(Entity parent)
     {
         super(parent);
-        spriteRenderer = addComponent(new SpriteRenderer(parent));
+        spriteRenderer = (SpriteRenderer)addComponent(new SpriteRenderer(parent));
         spriteRenderer.setSprite("ZombieSmall.png");
         spriteRenderer.setTint(Color.red);
 

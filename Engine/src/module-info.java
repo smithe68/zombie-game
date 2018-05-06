@@ -6,4 +6,5 @@ module Engine
     exports engine.components;
     exports engine.utility;
     exports engine.interfaces;
+    exports engine.enums;
 }

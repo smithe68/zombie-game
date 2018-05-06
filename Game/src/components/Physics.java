@@ -2,6 +2,7 @@ package components;
 
 import engine.Component;
 import engine.Entity;
+import engine.interfaces.CollisionEvent;
 import engine.utility.Vector;
 
 import java.awt.*;
@@ -18,7 +19,9 @@ public final class Physics extends Component
 {
     public Vector velocity = new Vector();
     public Vector colliderSize = new Vector(transform.getWidth(), transform.getHeight());
+
     private static List<Physics> physicsObjs = new LinkedList<>();
+    private CollisionEvent collisionEvent;
 
     public Physics(Entity parent)
     {
@@ -90,6 +93,10 @@ public final class Physics extends Component
                 if(phy.transform.position.getY() > transform.position.getY() & phy.velocity.getY() < 0) {
                     velocity.setY(velocity.getY() + phy.velocity.getY());
                 }
+
+                if(collisionEvent != null) {
+                    collisionEvent.Invoke(phy.parent);
+                }
             }
         }
     }
@@ -109,5 +116,9 @@ public final class Physics extends Component
 
         return new Rectangle2D.Float(renderPosition.getX() + offset.getX(), renderPosition.getY() + offset.getY(),
                 colliderSize.getX(), colliderSize.getY());
+    }
+
+    public void onCollision(CollisionEvent collisionEvent) {
+        this.collisionEvent = collisionEvent;
     }
 }

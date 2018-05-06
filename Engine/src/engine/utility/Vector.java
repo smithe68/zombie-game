@@ -96,4 +96,16 @@ public class Vector
     public static Vector lerp(Vector a, Vector b, float t) {
         return new Vector(Mafs.lerp(a.x, b.x, t), Mafs.lerp(a.y, b.y, t));
     }
+
+    public static Vector add(Vector a, Vector b) {
+        return new Vector(a.x + b.x, a.y + b.y);
+    }
+
+    public static Vector sub(Vector a, Vector b) {
+        return new Vector(a.x - b.x, a.y - b.y);
+    }
+
+    public static Vector mul(Vector a, Vector b) {
+        return new Vector(a.x * b.x, a.y * b.y);
+    }
 }

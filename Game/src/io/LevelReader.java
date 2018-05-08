@@ -74,13 +74,7 @@ public class LevelReader
         }
     }
 
-    private static String getLevelPath()
-    {
-        var view = FileSystemView.getFileSystemView();
-        String docs = view.getDefaultDirectory().toString();
-
-        var folder = new File(docs + "/Zombie Game/Game/src/levels");
-        if(folder.mkdirs()) { System.out.println("Created levels Folder"); }
-        return docs + "/Zombie Game/Game/src/levels";
+    private static String getLevelPath() {
+        return System.getProperty("user.dir") + "/Game/src/levels";
     }
 }
